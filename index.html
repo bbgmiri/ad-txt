@@ -1,16 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cozycat Games</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', 'Helvetica Neue', 'Arial Rounded MT Bold', sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
+.product-section {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.product-section a {
+  text-decoration: none; /* 전체 밑줄 제거 */
+  color: inherit;
+}
+
+.product-section .link-text {
+  font-size: 24px;
+  color: #e56b00;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.product-section .link-text:hover {
+  color: #00AEEF; /* hover 시 파랑 */
+}
+
+.product-section .link-text:active {
+  color: #e56b00; /* 클릭 시 주황 */
+}
+
+  .language-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.lang-btn {
+  position: relative;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+  padding-bottom: 10px;
+}
+
+.lang-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  border-radius: 999px;
+  background-color: #ccc;
+}
+
+.lang-btn.selected {
+  color: #00AEEF; /* 하늘색 */
+}
+
+.lang-btn.selected::after {
+  background-color: #00AEEF;
+}
+
+body {
+  font-family: 'Pretendard Variable', sans-serif;
+
+  margin: 0;
+  text-align: center;
+  padding: 20px;
+}
 
     h1 {
       font-size: 40px;
@@ -27,12 +94,17 @@
       height: auto;
     }
 
-    .section h2 {
-      font-size: 30px;
-      margin: 20px 0;
-      color: #666;
-      font-family: 'Segoe UI', 'Helvetica Neue', 'Arial Rounded MT Bold', sans-serif;
-    }
+.section h2 {
+  font-size: 24px;
+  margin: 20px 0;
+  color: #666;
+}
+
+@media (max-width: 600px) {
+  .section h2 {
+    font-size: 30px !important; /* 모바일에서도 작아지지 않음 */
+  }
+}
 
     .footer {
       font-size: 14px;
@@ -54,11 +126,18 @@
   </style>
 </head>
 <body>
-  <h1>Cozycat Games</h1>
+<div class="language-toggle">
+  <button id="btn-ko" class="lang-btn selected">한국어</button>
+  <button id="btn-en" class="lang-btn">English</button>
+</div>
+<h1 id="main-title" data-ko="코지캣 게임들" data-en="Cozycat Games">
+  코지캣 게임들
+</h1>
 
   <div class="section">
     <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/group-198-1.png?1711089358" alt="Main Banner" />
-    <h2>Complete the landscape by sticking stickers on it!</h2>
+	<h2 data-ko="스티커를 붙여서 풍경을 완성하세요!" data-en="Complete the landscape by sticking stickers on it!">
+</h2>
     <a href="https://play.google.com/store/apps/details?id=com.Cozycatinc.StickerTown" target="_blank">
       <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
     </a>
@@ -69,7 +148,8 @@
 <br /><br /><br />
 
     <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/hidden-1_orig.png" alt="Main Banner" />
-    <h2>Find your adorable hidden friends!</h2>
+		<h2 data-ko="숨은 친구들을 찾아보세요!" data-en="Find your adorable hidden friends!"></h2>
+
     <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.hiddenfriends" target="_blank">
       <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
     </a>
@@ -79,13 +159,48 @@
     </a>
 <br /><br />
 
-  </div>
+<div class="product-section">
+  <p>
+    <a href="https://www.coupang.com/vp/products/8508520617?itemId=24628034328&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91639093933&isAddedCart=" target="_blank">
+      <span class="link-text" data-ko="😻삼색이 치즈 봉제 키링 인형 구경가기→" data-en="😻Check out the plush doll: Samsaek Cat, Cheese">
+        삼색이 치즈 봉제 키링 인형 구경하러 가기
+      </span>
+    </a>
+  </p>
+  <p>
+    <a href="https://www.coupang.com/vp/products/8477139403?itemId=24530240614&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91542848355&isAddedCart=" target="_blank">
+      <span class="link-text" data-ko="🎨캐릭터 컬러링북 구경가기→" data-en="🎨Check out the character coloring book">
+        캐릭터 컬러링북 구경하러 가기
+      </span>
+    </a>
+  </p>
+</div>
+
 
   <div class="footer">
-    <p>Contact: info@cozycat.kr, support@cozycat.kr (Game)</p>
-    <p>Phone: +82-010-2206-0768</p>
-    <p>Address: B404, 88, Bugwang-ro, Guro-gu, Seoul, Republic of Korea</p>
+    <p>✉️ info@cozycat.kr, support@cozycat.kr(Game)</p>
+    <p>📞 +82-010-2206-0768</p>
+<p data-ko="🏢 서울특별시 구로구 부광로88, B동 404호" data-en="🏢 B404, 88, Bugwang-ro, Guro-gu, Seoul, Republic of Korea"></p>
   </div>
+  <script>
+  const btnKo = document.getElementById('btn-ko');
+  const btnEn = document.getElementById('btn-en');
+
+  const setLanguage = (lang) => {
+    document.querySelectorAll('[data-ko]').forEach(el => {
+      el.innerText = el.dataset[lang];
+    });
+
+    btnKo.classList.toggle('selected', lang === 'ko');
+    btnEn.classList.toggle('selected', lang === 'en');
+  };
+
+  btnKo.addEventListener('click', () => setLanguage('ko'));
+  btnEn.addEventListener('click', () => setLanguage('en'));
+
+  // 기본 언어 설정
+  setLanguage('ko');
+</script>
+
 </body>
 </html>
-
