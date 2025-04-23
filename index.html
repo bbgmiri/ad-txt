@@ -15,11 +15,18 @@
 }
 
 .product-section a {
-  text-decoration: none; /* 전체 밑줄 제거 */
+  text-decoration: none;
   color: inherit;
 }
 
-.product-section .link-text {
+.emoji {
+  text-decoration: none;
+  margin-right: 4px;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+.link-text {
   font-size: 24px;
   color: #e56b00;
   text-decoration: underline;
@@ -96,16 +103,10 @@ body {
 
 .section h2 {
   font-size: 24px;
-  margin: 20px 0;
+  margin: 20px;
   color: #666;
+  font-weight: 600;
 }
-
-@media (max-width: 600px) {
-  .section h2 {
-    font-size: 30px !important; /* 모바일에서도 작아지지 않음 */
-  }
-}
-
     .footer {
       font-size: 14px;
       color: #555;
@@ -114,15 +115,6 @@ body {
       border-top: 1px solid #ccc;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 36px;
-      }
-
-      .section h2 {
-        font-size: 12px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -130,13 +122,12 @@ body {
   <button id="btn-ko" class="lang-btn selected">한국어</button>
   <button id="btn-en" class="lang-btn">English</button>
 </div>
-<h1 id="main-title" data-ko="코지캣 게임들" data-en="Cozycat Games">
-  코지캣 게임들
+<h1 id="main-title" data-ko="Cozycat Studio" data-en="Cozycat Studio">
 </h1>
 
   <div class="section">
     <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/group-198-1.png?1711089358" alt="Main Banner" />
-	<h2 data-ko="스티커를 붙여서 풍경을 완성하세요!" data-en="Complete the landscape by sticking stickers on it!">
+	<h2 data-ko="스티커타운: 스티커를 붙여서 그림을 완성해보세요!" data-en="Sticker Town: Complete the landscape by sticking stickers on it!">
 </h2>
     <a href="https://play.google.com/store/apps/details?id=com.Cozycatinc.StickerTown" target="_blank">
       <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
@@ -148,7 +139,7 @@ body {
 <br /><br /><br />
 
     <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/hidden-1_orig.png" alt="Main Banner" />
-		<h2 data-ko="숨은 친구들을 찾아보세요!" data-en="Find your adorable hidden friends!"></h2>
+		<h2 data-ko="히든프렌즈: 숨은 친구들을 찾아보세요!" data-en="Hidden Friends: Find your adorable hidden friends!"></h2>
 
     <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.hiddenfriends" target="_blank">
       <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
@@ -158,24 +149,25 @@ body {
       <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997" alt="App Store Link" />
     </a>
 <br /><br />
-
 <div class="product-section">
-  <p>
-    <a href="https://www.coupang.com/vp/products/8508520617?itemId=24628034328&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91639093933&isAddedCart=" target="_blank">
-      <span class="link-text" data-ko="😻삼색이 치즈 봉제 키링 인형 구경가기→" data-en="😻Check out the plush doll: Samsaek Cat, Cheese">
-        삼색이 치즈 봉제 키링 인형 구경하러 가기
-      </span>
-    </a>
-  </p>
-  <p>
-    <a href="https://www.coupang.com/vp/products/8477139403?itemId=24530240614&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91542848355&isAddedCart=" target="_blank">
-      <span class="link-text" data-ko="🎨캐릭터 컬러링북 구경가기→" data-en="🎨Check out the character coloring book">
-        캐릭터 컬러링북 구경하러 가기
-      </span>
-    </a>
-  </p>
-</div>
+<p>
+  <a href="https://www.coupang.com/vp/products/8508520617?itemId=24628034328&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91639093933&isAddedCart=" target="_blank">
+    <span class="emoji">😻</span>
+    <span class="link-text" data-ko="삼색이 치즈 봉제 키링 인형 구경가기→" data-en="Check out the plush doll: Samsaek Cat, Cheese">
+      삼색이 치즈 봉제 키링 인형 구경하러 가기
+    </span>
+  </a>
+</p>
+<p>
+  <a href="https://www.coupang.com/vp/products/8477139403?itemId=24530240614&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91542848355&isAddedCart=" target="_blank">
+    <span class="emoji">🎨</span>
+    <span class="link-text" data-ko="캐릭터 컬러링북 구경가기→" data-en="Check out the character coloring book">
+      캐릭터 컬러링북 구경하러 가기
+    </span>
+  </a>
+</p>
 
+</div>
 
   <div class="footer">
     <p>✉️ info@cozycat.kr, support@cozycat.kr(Game)</p>
