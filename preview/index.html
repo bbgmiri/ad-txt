@@ -100,8 +100,7 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
-    .primary-nav > a,
-    .nav-parent > button {
+    .primary-nav > a {
       min-height: 42px;
       padding: 0 14px;
       border: 0;
@@ -115,42 +114,7 @@
       justify-content: center;
     }
     .primary-nav > a:hover,
-    .primary-nav > a.active,
-    .nav-parent:hover > button,
-    .nav-parent > button.active { color: var(--accent); }
-    .nav-parent { position: relative; }
-    .submenu {
-      position: absolute;
-      right: 0;
-      top: calc(100% + 8px);
-      width: 190px;
-      padding: 8px 0;
-      border: 1px solid var(--line);
-      background: #fff;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
-      opacity: 0;
-      transform: translateY(-6px);
-      pointer-events: none;
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-    .nav-parent:hover .submenu,
-    .nav-parent:focus-within .submenu {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-    .submenu a {
-      display: block;
-      padding: 10px 16px;
-      color: #111;
-      background: #fff;
-      white-space: nowrap;
-    }
-    .submenu a:hover,
-    .submenu a.active {
-      color: var(--accent);
-      background: #fffafa;
-    }
+    .primary-nav > a.active { color: var(--accent); }
 
     main { min-height: calc(100vh - 180px); }
     .page {
@@ -422,29 +386,12 @@
         background: #fff;
       }
       .primary-nav.open { display: flex; }
-      .primary-nav > a,
-      .nav-parent > button {
+      .primary-nav > a {
         justify-content: flex-start;
         width: 100%;
         padding: 14px 24px;
         min-height: 48px;
         border-top: 1px solid var(--line);
-      }
-      .nav-parent { width: 100%; }
-      .submenu {
-        position: static;
-        width: 100%;
-        padding: 0;
-        border: 0;
-        border-top: 1px solid var(--line);
-        box-shadow: none;
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-      }
-      .submenu a {
-        padding: 12px 38px;
-        background: #fffafa;
       }
       .quote-block { grid-template-columns: 1fr; }
       .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -483,13 +430,7 @@
         <a href="#home" data-nav="home">Home</a>
         <a href="#games" data-nav="games">Games</a>
         <a href="#works" data-nav="works">Works</a>
-        <div class="nav-parent">
-          <button type="button" data-nav="contact" onclick="location.hash='contact'">Contact</button>
-          <div class="submenu" aria-label="Contact sub pages">
-            <a href="#terms" data-nav="terms">Terms of Service</a>
-            <a href="#privacy" data-nav="privacy">Privacy Policy</a>
-          </div>
-        </div>
+        <a href="#contact" data-nav="contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -704,10 +645,6 @@
     <div class="footer-inner">
       <div>copyright ⓒ 2026 COZYCAT</div>
       <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="#home">Home</a>
-        <a href="#games">Games</a>
-        <a href="#works">Works</a>
-        <a href="#contact">Contact</a>
         <a href="#terms">Terms of Service</a>
         <a href="#privacy">Privacy Policy</a>
       </nav>
