@@ -270,6 +270,49 @@
       transition: transform 0.22s ease;
     }
     .gallery a:hover img { transform: scale(1.035); }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(20, 20, 20, 0.82);
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-panel {
+      position: relative;
+      width: min(100%, 1100px);
+      max-height: calc(100vh - 56px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox img {
+      width: auto;
+      max-width: 100%;
+      max-height: calc(100vh - 56px);
+      border-radius: 4px;
+      background: #fff;
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.35);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: #fff;
+      color: #111;
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 1;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+    }
+    .lightbox-close:hover { color: var(--accent); }
     .link-list {
       display: grid;
       gap: 10px;
@@ -401,6 +444,17 @@
       }
       .brand img { width: 116px; }
       .gallery { grid-template-columns: 1fr; }
+      .lightbox {
+        padding: 16px;
+      }
+      .lightbox-panel,
+      .lightbox img {
+        max-height: calc(100vh - 32px);
+      }
+      .lightbox-close {
+        top: 8px;
+        right: 8px;
+      }
       .store-buttons img { width: 210px; }
     }
   </style>
@@ -639,6 +693,13 @@
     </section>
   </main>
 
+  <div class="lightbox" id="image-lightbox" aria-hidden="true">
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Portfolio image preview">
+      <button class="lightbox-close" type="button" aria-label="Close image preview">×</button>
+      <img alt="" />
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="footer-inner">
       <div>copyright ⓒ 2026 COZYCAT</div>
@@ -735,7 +796,7 @@
       const root = document.getElementById("portfolio-root");
       root.innerHTML = portfolioSections.map((section) => {
         const images = section.images.map((path) => `
-          <a href="${assetUrl(path)}" target="_blank" rel="noopener">
+          <a href="${assetUrl(path)}" data-lightbox-image aria-label="${section.title} 이미지 크게 보기">
             <img data-asset="${path}" alt="${section.title}" loading="lazy" />
           </a>
         `).join("");
@@ -746,6 +807,44 @@
           </section>
         `;
       }).join("");
+    }
+
+    function initLightbox() {
+      const lightbox = document.getElementById("image-lightbox");
+      const lightboxImage = lightbox.querySelector("img");
+      const closeButton = lightbox.querySelector(".lightbox-close");
+
+      function openLightbox(src, alt) {
+        lightboxImage.src = src;
+        lightboxImage.alt = alt || "Portfolio image preview";
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        closeButton.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.removeAttribute("src");
+        document.body.style.overflow = "";
+      }
+
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest("[data-lightbox-image]");
+        if (!link) return;
+        event.preventDefault();
+        const image = link.querySelector("img");
+        openLightbox(link.href, image?.alt);
+      });
+
+      closeButton.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
     }
 
     function currentPageId() {
@@ -776,6 +875,7 @@
 
     renderPortfolio();
     setImageSources();
+    initLightbox();
     showPage(currentPageId());
   </script>
 </body>
