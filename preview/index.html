@@ -144,6 +144,19 @@
       color: #555;
       word-break: keep-all;
     }
+    .home-hero {
+      width: 100vw;
+      margin: -54px calc(50% - 50vw) 32px;
+      overflow: hidden;
+      background: #f8efb8;
+    }
+    .home-hero img {
+      width: 100%;
+      max-width: none;
+      height: min(58vw, 560px);
+      object-fit: cover;
+      object-position: center;
+    }
     .rule {
       height: 1px;
       margin: 42px 0;
@@ -402,6 +415,12 @@
         width: min(100% - 24px, var(--max));
         padding-top: 38px;
       }
+      .home-hero {
+        margin-top: -38px;
+      }
+      .home-hero img {
+        height: min(74vw, 430px);
+      }
       .brand img { width: 116px; }
       .gallery { grid-template-columns: 1fr; }
       .lightbox {
@@ -437,6 +456,9 @@
 
   <main>
     <section id="home" class="page active" aria-labelledby="home-title">
+      <div class="home-hero">
+        <img class="no-visual-search" data-asset="background-images/497186266.png" alt="COZYCAT game art world" />
+      </div>
       <h1 id="home-title" class="page-title">Game Art Service</h1>
       <div class="home-lead">
         <p>주식회사 코지캣은 밝고 힐링되는 콘텐츠를 기획·개발·서비스하는 게임 스튜디오입니다. 즐겁고 유쾌하면서도 의미 있는 게임 경험을 통해 전 세계 유저들에게 긍정적인 에너지를 전하고, 나아가 세상을 더 밝고 따뜻한 곳으로 만드는 가치를 추구합니다.</p>
