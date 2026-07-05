@@ -757,6 +757,7 @@
     const navItems = [...document.querySelectorAll("[data-nav]")];
     const menuToggle = document.querySelector(".menu-toggle");
     const primaryNav = document.querySelector(".primary-nav");
+    let portfolioRendered = false;
 
     function syncViewportWidth() {
       const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
@@ -772,13 +773,17 @@
       return ASSET_BASE + encodeAssetPath(path);
     }
 
-    function setImageSources() {
-      document.querySelectorAll("img[data-asset]").forEach((img) => {
-        img.src = assetUrl(img.dataset.asset);
+    function loadImagesWithin(root) {
+      if (!root) return;
+      root.querySelectorAll("img[data-asset]").forEach((img) => {
+        if (!img.hasAttribute("src")) {
+          img.src = assetUrl(img.dataset.asset);
+        }
       });
     }
 
-    function renderPortfolio() {
+    function ensurePortfolioRendered() {
+      if (portfolioRendered) return;
       const root = document.getElementById("portfolio-root");
       root.innerHTML = portfolioSections.map((section) => {
         const images = section.images.map((path) => `
@@ -793,6 +798,7 @@
           </section>
         `;
       }).join("");
+      portfolioRendered = true;
     }
 
     function initLightbox() {
@@ -857,8 +863,14 @@
     }
 
     function showPage(id) {
+      if (id === "works") {
+        ensurePortfolioRendered();
+      }
+
       pages.forEach((page) => page.classList.toggle("active", page.id === id));
       navItems.forEach((item) => item.classList.toggle("active", item.dataset.nav === id));
+      loadImagesWithin(document.querySelector(".site-header"));
+      loadImagesWithin(document.querySelector(`#${id}`));
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
       primaryNav.classList.remove("open");
@@ -879,8 +891,6 @@
 
     window.addEventListener("resize", syncViewportWidth);
     syncViewportWidth();
-    renderPortfolio();
-    setImageSources();
     initLightbox();
     showPage(currentPageId());
   </script>
