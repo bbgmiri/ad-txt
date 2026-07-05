@@ -19,10 +19,20 @@
       --line: #ececec;
       --soft: #fff7f7;
       --max: 1040px;
+      --viewport-scrollbar: 0px;
+      --viewport-scrollbar-half: 0px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    body { overflow-x: hidden; }
+    @supports (overflow-x: clip) {
+      html,
+      body { overflow-x: clip; }
+    }
     body {
       margin: 0;
       color: var(--text);
@@ -149,8 +159,8 @@
       overflow-wrap: normal;
     }
     .home-hero {
-      width: 100vw;
-      margin: -54px calc(50% - 50vw) 32px;
+      width: calc(100vw - var(--viewport-scrollbar));
+      margin: -54px calc(50% - 50vw + var(--viewport-scrollbar-half)) 32px;
       overflow: hidden;
       background: #f8efb8;
     }
@@ -740,6 +750,12 @@
     const menuToggle = document.querySelector(".menu-toggle");
     const primaryNav = document.querySelector(".primary-nav");
 
+    function syncViewportWidth() {
+      const scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+      document.documentElement.style.setProperty("--viewport-scrollbar", `${scrollbarWidth}px`);
+      document.documentElement.style.setProperty("--viewport-scrollbar-half", `${scrollbarWidth / 2}px`);
+    }
+
     function encodeAssetPath(path) {
       return path.split("/").map(encodeURIComponent).join("/");
     }
@@ -835,6 +851,8 @@
       }
     });
 
+    window.addEventListener("resize", syncViewportWidth);
+    syncViewportWidth();
     renderPortfolio();
     setImageSources();
     initLightbox();
