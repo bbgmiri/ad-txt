@@ -24,8 +24,15 @@
       margin: 0;
       color: var(--text);
       background: #fff;
-      font-family: "Pretendard Variable", Arial, sans-serif;
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       line-height: 1.7;
+    }
+    body,
+    button,
+    input,
+    textarea,
+    select {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
     }
     a { color: inherit; text-decoration: none; }
     img {
@@ -235,21 +242,6 @@
       opacity: 0.88;
     }
     .store-buttons img { width: min(230px, 42vw); }
-    .quiz-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      align-items: start;
-      width: min(100%, 860px);
-      margin: 0 auto;
-    }
-    .quiz-grid figure { margin: 0; }
-    .quiz-grid figcaption {
-      margin-top: 10px;
-      color: #666;
-      font-weight: 700;
-    }
-
     .section-heading {
       margin: 0 0 18px;
       color: var(--text);
@@ -441,8 +433,7 @@
         padding: 12px 38px;
         background: #fffafa;
       }
-      .quote-block,
-      .quiz-grid { grid-template-columns: 1fr; }
+      .quote-block { grid-template-columns: 1fr; }
       .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
@@ -585,19 +576,6 @@
           <div class="store-buttons">
             <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.amazinggrow.android.google.global.normal" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-375_1.png" alt="Google Play" /></a>
             <a href="https://apps.apple.com/us/app/amazing-grow/id6471392175" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-376_1.png" alt="App Store" /></a>
-          </div>
-        </article>
-
-        <article class="game-card">
-          <h2>리플렛 퀴즈</h2>
-          <div class="quiz-grid">
-            <figure>
-              <img class="no-visual-search" data-asset="sticker-1112_orig.png" alt="Leaflet quiz" />
-              <figcaption>정답은 아래에!▼</figcaption>
-            </figure>
-            <figure>
-              <img class="no-visual-search" data-asset="sticker_1.png" alt="Leaflet quiz answer" />
-            </figure>
           </div>
         </article>
       </div>
