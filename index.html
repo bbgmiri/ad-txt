@@ -1,246 +1,1184 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="ko">
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cozycat Games</title>
+  <meta name="description" content="COZYCAT official website" />
+  <title>COZYCAT</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
   <style>
-.store-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 12px; /* 버튼 사이 여백 */
-  margin: 12px 0;
-}
-
-.store-button {
-  width: 230px;
-  height: auto;
-}
-
-.product-section {
-  text-align: center;
-  font-size: 25px;
-  margin-top: 60px;
-  margin-bottom: 40px;
-}
-
-.product-section a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.emoji {
-  text-decoration: none;
-  margin-right: 4px;
-  font-size: 1.2em;
-  vertical-align: middle;
-}
-
-.link-text {
-  font-size: 24px;
-  color: #e56b00;
-  text-decoration: underline;
-  transition: color 0.2s ease;
-}
-
-.product-section .link-text:hover {
-  color: #00AEEF; /* hover 시 파랑 */
-}
-
-.product-section .link-text:active {
-  color: #e56b00; /* 클릭 시 주황 */
-}
-
-  .language-toggle {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  gap: 20px;
-}
-
-.lang-btn {
-  position: relative;
-  background: none;
-  border: none;
-  font-size: 14px;
-  color: #888;
-  cursor: pointer;
-  padding-bottom: 10px;
-}
-
-.lang-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 2px;
-  border-radius: 999px;
-  background-color: #ccc;
-}
-
-.lang-btn.selected {
-  color: #00AEEF; /* 하늘색 */
-}
-
-.lang-btn.selected::after {
-  background-color: #00AEEF;
-}
-
-body {
-  font-family: 'Pretendard Variable', sans-serif;
-
-  margin: 0;
-  text-align: center;
-  padding: 20px;
-}
-
-    h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-      color: #FD9B2C;
+    :root {
+      --accent: #e97676;
+      --accent-dark: #d85e5e;
+      --text: #2a2a2a;
+      --muted: #777;
+      --line: #ececec;
+      --soft: #fff7f7;
+      --max: 1040px;
+      color-scheme: light;
     }
 
-    .section {
-      margin-bottom: 50px;
+    * {
+      box-sizing: border-box;
     }
 
-    .section img {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #fff;
+      font-family: "Pretendard Variable", "Montserrat", "Lato", Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
       max-width: 100%;
       height: auto;
     }
 
-.section h2 {
-  font-size: 24px;
-  margin: 20px;
-  color: #666;
-  font-weight: 600;
-}
-    .footer {
-      font-size: 14px;
-      color: #555;
-      margin-top: 80px;
-      padding: 20px;
-      border-top: 1px solid #ccc;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
     }
 
+    .header-inner {
+      width: min(var(--max), calc(100% - 32px));
+      min-height: 78px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 160px;
+    }
+
+    .brand img {
+      width: 132px;
+      max-height: 48px;
+      object-fit: contain;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .primary-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .primary-nav > a,
+    .nav-parent > button {
+      min-height: 42px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: #333;
+      font: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .primary-nav > a:hover,
+    .primary-nav > a.active,
+    .nav-parent:hover > button,
+    .nav-parent > button.active {
+      color: var(--accent);
+    }
+
+    .nav-parent {
+      position: relative;
+    }
+
+    .submenu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      width: 190px;
+      padding: 8px 0;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-parent:hover .submenu,
+    .nav-parent:focus-within .submenu {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .submenu a {
+      display: block;
+      padding: 10px 16px;
+      color: #111;
+      background: #fff;
+      white-space: nowrap;
+    }
+
+    .submenu a:hover,
+    .submenu a.active {
+      color: var(--accent);
+      background: #fffafa;
+    }
+
+    main {
+      min-height: calc(100vh - 180px);
+    }
+
+    .page {
+      display: none;
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 54px 0 80px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-title {
+      margin: 0 0 26px;
+      color: var(--accent);
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .page-kicker {
+      margin: 0 0 42px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .home-lead {
+      max-width: 760px;
+      margin-bottom: 44px;
+      font-size: clamp(18px, 2.2vw, 23px);
+      color: #555;
+    }
+
+    .rule {
+      height: 1px;
+      margin: 42px 0;
+      background: var(--line);
+      border: 0;
+    }
+
+    .timeline {
+      margin: 0;
+      padding-left: 1.2em;
+      color: #4e4e4e;
+    }
+
+    .timeline li + li {
+      margin-top: 7px;
+    }
+
+    .quote-block {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 330px);
+      gap: 38px;
+      align-items: start;
+      margin-top: 16px;
+    }
+
+    .quote-block p {
+      margin-top: 0;
+      color: #555;
+      word-break: keep-all;
+    }
+
+    .portrait {
+      border-radius: 4px;
+      border: 1px solid var(--line);
+    }
+
+    .game-list {
+      display: grid;
+      gap: 54px;
+    }
+
+    .game-card {
+      display: grid;
+      gap: 20px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .game-card:last-child {
+      border-bottom: 0;
+    }
+
+    .game-card h2 {
+      margin: 0;
+      color: var(--accent);
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.35;
+      letter-spacing: 0;
+      word-break: keep-all;
+    }
+
+    .game-banner {
+      width: min(100%, 900px);
+      margin: 0 auto;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      object-fit: cover;
+    }
+
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .store-buttons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .store-buttons a:hover {
+      transform: translateY(-2px);
+      opacity: 0.88;
+    }
+
+    .store-buttons img {
+      width: min(230px, 42vw);
+    }
+
+    .toon-link {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .toon-link img {
+      width: 68px;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+      width: min(100%, 860px);
+      margin: 0 auto;
+    }
+
+    .quiz-grid figure {
+      margin: 0;
+    }
+
+    .quiz-grid figcaption {
+      margin-top: 10px;
+      color: #666;
+      font-weight: 700;
+    }
+
+    .portfolio-section + .portfolio-section {
+      margin-top: 50px;
+    }
+
+    .section-heading {
+      margin: 0 0 18px;
+      color: var(--text);
+      font-size: clamp(20px, 2.4vw, 28px);
+      line-height: 1.35;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .gallery a {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #fafafa;
+      aspect-ratio: 4 / 3;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.22s ease;
+    }
+
+    .gallery a:hover img {
+      transform: scale(1.035);
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .link-list a {
+      display: inline-flex;
+      width: fit-content;
+      color: var(--accent-dark);
+      font-weight: 700;
+      border-bottom: 1px solid currentColor;
+    }
+
+    .contact-box {
+      display: grid;
+      gap: 24px;
+      max-width: 720px;
+      color: #555;
+      font-size: 18px;
+    }
+
+    .contact-row strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .contact-row a {
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    .legal {
+      max-width: 860px;
+      color: #3d3d3d;
+      font-size: 15px;
+    }
+
+    .legal h2 {
+      margin: 32px 0 10px;
+      color: var(--text);
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    .legal h3 {
+      margin: 22px 0 8px;
+      color: var(--text);
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .legal p {
+      margin: 0 0 12px;
+    }
+
+    .legal ul {
+      margin: 0 0 16px;
+      padding-left: 1.25em;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: #fafafa;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 26px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 780px) {
+      .header-inner {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .primary-nav {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 68px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .primary-nav.open {
+        display: flex;
+      }
+
+      .primary-nav > a,
+      .nav-parent > button {
+        justify-content: flex-start;
+        width: 100%;
+        padding: 14px 24px;
+        min-height: 48px;
+        border-top: 1px solid var(--line);
+      }
+
+      .nav-parent {
+        width: 100%;
+      }
+
+      .submenu {
+        position: static;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        border-top: 1px solid var(--line);
+        box-shadow: none;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+
+      .submenu a {
+        padding: 12px 38px;
+        background: #fffafa;
+      }
+
+      .quote-block,
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 24px, var(--max));
+        padding-top: 38px;
+      }
+
+      .brand img {
+        width: 116px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .store-buttons img {
+        width: 210px;
+      }
+    }
   </style>
 </head>
 <body>
-<div class="language-toggle">
-  <button id="btn-ko" class="lang-btn selected">한국어</button>
-  <button id="btn-en" class="lang-btn">English</button>
-</div>
-<h1 id="main-title" data-ko="Cozycat Studio" data-en="Cozycat Studio">
-</h1>
-
-  <div class="section">
-	    <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/1000x500.png?1770871744" alt="Merge Pocket Banner" />
-    <h2 data-ko="머지 포켓: 합치면서 만드는 주머니 속 작은 세상"
-        data-en="Merge Pocket: A tiny world inside your pocket">
-    </h2>
-
-    <div class="store-buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.mergepocket" target="_blank">
-        <img class="store-button"
-             src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png"
-             alt="Play Store Link" />
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home" data-nav="home" aria-label="COZYCAT Home">
+        <img data-asset="published/group-4-assistor.png" alt="COZYCAT" />
       </a>
-<br /><br />
-      <a href="https://apps.apple.com/app/merge-pocket/id6757770385" target="_blank">
-        <img class="store-button"
-             src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997"
-             alt="App Store Link" />
-      </a>
-		</div>
-	  <br /><br /><br />
-    <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/group-198-1.png?1711089358" alt="Main Banner" />
-	<h2 data-ko="스티커타운: 스티커를 붙여서 그림을 완성해보세요!" data-en="Sticker Town: Complete the landscape by sticking stickers on it!">
-</h2>
-<div class="store-buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.Cozycatinc.StickerTown" target="_blank">
-     <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
-    </a>
-    <br /><br />
-    <a href="https://apps.apple.com/us/app/stickertown-puzzle-color-book/id6478581353" target="_blank">
-     <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997" alt="App Store Link" />
-    </a>
-</div>
-<br /><br /><br />
-    <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/hidden-1_orig.png" alt="Main Banner" />
-		<h2 data-ko="히든프렌즈: 숨은 친구들을 찾아봐요!" data-en="Hidden Friends: Find your adorable hidden friends!"></h2>
-<div class="store-buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.hiddenfriends" target="_blank">
-      <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
-    </a>
-    <br /><br />
-    <a href="https://apps.apple.com/us/app/hidden-friends/id6743651928" target="_blank">
-      <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997" alt="App Store Link" />
-    </a>
-</div>
-<br /><br /><br />
-    <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/group-189_1.png" alt="Color Town Banner" />
-    <h2 data-ko="컬러타운: 귀여운 캐릭터들과 컬러링하며 마을을 확장해요!" data-en="Color Town : Enjoy coloring, mini-games, and expanding your village with adorable characters!"></h2>
-    <div class="store-buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.cozycat.colortoc" target="_blank">
-        <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
-      </a>
-      <br /><br />
-      <a href="https://apps.apple.com/app/color-town-my-lovely-world/id1645751654" target="_blank">
-        <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997" alt="App Store Link" />
-      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">??/button>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#games" data-nav="games">Games</a>
+        <a href="#works" data-nav="works">Works</a>
+        <div class="nav-parent">
+          <button type="button" data-nav="contact" onclick="location.hash='contact'">Contact</button>
+          <div class="submenu" aria-label="Contact sub pages">
+            <a href="#terms" data-nav="terms">Terms of Service</a>
+            <a href="#privacy" data-nav="privacy">Privacy Policy</a>
+          </div>
+        </div>
+      </nav>
     </div>
-<br /><br />
-<div class="product-section">
-<p>
-  <a href="https://www.coupang.com/vp/products/8508520617?itemId=24628034328&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91639093933&isAddedCart=" target="_blank">
-    <span class="emoji">😻</span>
-    <span class="link-text" data-ko="삼색고양이와 치즈 인형 구경가기→" data-en="Check out the plush doll: Samsaek Cat, Cheese">
-      삼색이 치즈 봉제 키링 인형 구경하러 가기
-    </span>
-  </a>
-</p>
-<p>
-  <a href="https://www.coupang.com/vp/products/8477139403?itemId=24530240614&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91542848355&isAddedCart=" target="_blank">
-    <span class="emoji">🎨</span>
-    <span class="link-text" data-ko="캐릭터 컬러링북 구경가기→" data-en="Check out the character coloring book">
-      캐릭터 컬러링북 구경하러 가기
-    </span>
-  </a>
-</p>
+  </header>
 
-</div>
+  <main>
+    <section id="home" class="page active" aria-labelledby="home-title">
+      <h1 id="home-title" class="page-title">Game Art Service</h1>
+      <div class="home-lead">
+        <p>二쇱떇?뚯궗 肄붿?罹ｌ? 諛앷퀬 ?먮쭅?섎뒗 肄섑뀗痢좊? 湲고쉷쨌媛쒕컻쨌?쒕퉬?ㅽ븯??寃뚯엫 ?ㅽ뒠?붿삤?낅땲?? 利먭쾪怨??좎풄?섎㈃?쒕룄 ?섎? ?덈뒗 寃뚯엫 寃쏀뿕???듯빐 ???멸퀎 ?좎??ㅼ뿉寃?湲띿젙?곸씤 ?먮꼫吏瑜??꾪븯怨? ?섏븘媛 ?몄긽????諛앷퀬 ?곕쑜??怨녹쑝濡?留뚮뱶??媛移섎? 異붽뎄?⑸땲??</p>
+      </div>
 
-  <div class="footer">
-    <p>✉️ info@cozycat.kr, support@cozycat.kr(Game)</p>
-    <p>📞 +82-010-2206-0768</p>
-<p data-ko="🏢 서울특별시 구로구 경인로20가길 5, 9층 901-456호" data-en="🏢 9F, Unit 901-456, 5 Gyeongin-ro 20ga-gil, Guro-gu, Seoul, South Korea"></p>
-  </div>
+      <hr class="rule" />
+
+      <h2 class="section-heading">Established in 2020</h2>
+      <ul class="timeline">
+        <li>2020??5??李쎌뾽吏꾪씎???덈퉬李쎌뾽?⑦궎吏 ?좎젙 (李쎌뾽 ?ъ뾽??吏??</li>
+        <li>2021??3??以묒냼湲곗뾽踰ㅼ쿂遺 泥?뀈李쎌뾽?ш??숆탳 11湲??낃탳 (李쎌뾽 諛??ъ뾽??吏??</li>
+        <li>2021??6??SBA ?몃뵒寃뚯엫 ?⑥뒪?명듃???쒖옉吏???좎젙 (紐⑤컮?쇨쾶??而щ윭?? ??而щ윭???</li>
+        <li>2021??9??'援먯썝 ?꾨━?ㅼ쫰' ?대┛??臾몄젣?쒕룞 19醫?媛쒕컻 ?⑺뭹</li>
+        <li>2022??1???대┛?닿뎅由쎄낵?숆? ?꾩떆 ?꾨줈洹몃옩 UI, ?숇Ъ ?좊땲硫붿씠?? 諛곌꼍 ?붿옄???쒖옉 諛??⑺뭹</li>
+        <li>2022??2??'?덉텧! ?⑤씪??洹몃（諛? ?밴쾶??媛쒕컻 ?⑺뭹, ?묒꽦?됰벑吏꾪씎???대윭?앹궗?댄듃 ?뷀겢 異쒖떆</li>
+        <li>2022??3???붿쫰??IP 湲곕컲 ?대┛?댁쁺?닿탳??紐⑤컮?쇱빋 ?꾨줈?좏????쒖옉 ?⑺뭹, ?대씪?댁뼵?몄궗 LGU+ ?ъ뾽 ?섏＜(?꾩씠?ㅻ굹??</li>
+        <li>2022??4??以묒냼踰ㅼ쿂湲곗뾽吏꾪씎怨듬떒 湲濡쒕쾶李쎌뾽?ш??숆탳 3湲??낃탳 (李쎌뾽 ?ъ뾽??吏??</li>
+        <li>2022??5??釉뚮옖???띾낫 肄섑뀗痢?寃뚯엫 - '?④렇由щ뵒?몄툩 ?쒗럹?좎썡?? ?쒖븞, 湲고쉷, 媛쒕컻, ?붿옄??諛?異쒖떆</li>
+        <li>2022??7??'異섏쿇?쒓텒??泥댄뿕 寃뚯엫' - HTML5 寃뚯엫 媛쒕컻 諛??⑺뭹</li>
+        <li>2022??7??'泥?씪援?젣?꾩떆 泥댄뿕 寃뚯엫' - ?쒗럹?좎썡??媛쒕컻 諛??⑺뭹</li>
+        <li>2022??10??2023??4??LGU+ ?꾩씠?ㅻ굹???밴쾶??32醫?媛쒕컻 ?⑺뭹</li>
+        <li>2022??11??'而щ윭??? 紐⑤컮?쇨쾶??援ш??뚮젅?? iOS 異쒖떆</li>
+        <li>2022??12??硫뷀?踰꾩뒪 肄섑뀗痢?'媛ㅻ윮?쒖떆??????묒뒪??轅덈룎?? ?쒗럹?좎썡?? 媛쒕컻 ?⑺뭹</li>
+        <li>2023??2??Kinect ?곕룞 蹂댄뻾 ?꾨줈?앺듃(蹂댄뻾 利앹쭊 寃뚯엫 2醫낃낵 ?곗씠??遺꾩꽍 諛??섏쭛) 媛쒕컻 ?⑺뭹</li>
+        <li>2023??5??SBA ?쒖슱寃쎌젣吏꾪씎??寃뚯엫肄섑뀗痢??쒖옉吏??'留덇뎄留덇뎄?ㅼ슦湲? ?좎젙</li>
+        <li>2023??5??SBA ?쒖슱寃쎌젣吏꾪씎??寃뚯엫留덉??낆???'而щ윭??? ?좎젙</li>
+        <li>2023??10??2023 BIGS AWARD 紐⑤컮?쇨쾶??'而щ윭??? ?좊땲??洹몃줈?곗긽 ?섏긽</li>
+        <li>2023??12??'留덇뎄留덇뎄?ㅼ슦湲? 援ш??뚮젅?? iOS 異쒖떆</li>
+        <li>2023??12???쒖슱?쒖뿬?깃?議깆옱???깃탳??釉붾줉肄붾뵫 寃뚯엫 2醫?媛쒕컻 ?⑺뭹</li>
+        <li>2024??3??'?ㅽ떚而ㅽ????쇱쫹' 援ш??뚮젅?? iOS 異쒖떆</li>
+        <li>2025??3??'?덈뱺?꾨젋利? ?⑥?洹몃┝李얘린寃뚯엫 援ш??뚮젅?? iOS 異쒖떆</li>
+        <li>2026??2??'癒몄??ъ폆' 援ш??뚮젅?? iOS 異쒖떆 ?덉젙</li>
+        <li>2026??5???곕툕罹좏봽 湲고쉷 ?듦낵 '??대땲 ?쒗띁'</li>
+      </ul>
+
+      <hr class="rule" />
+
+      <h2 class="section-heading">2024 ??쒖옄 ?몄궭留?/h2>
+      <div class="quote-block">
+        <div>
+          <p>?덈뀞?섏꽭?? 二쇱떇?뚯궗 肄붿?罹?????덈?由ъ엯?덈떎.</p>
+          <p>二쇱떇?뚯궗 肄붿?罹??ㅻ┰? ?붾텋???щ뒗 ?몄긽???꾪븳 醫뗭? 媛移??꾨떖 紐⑺몴?먯꽌 ?쒖옉?섏뿀?듬땲?? ?멸컙???뚮났, ?ㅼ뼇??議댁쨷怨??댄빐? 諛곕젮濡??щ엺怨??щ엺???섎뒗 ?쇱쓣 ?듯빐 ?쒕줈 ?꾩????섍퀬 媛먮룞??二쇨퀬, ?숈떆?瑜??④퍡 ?⑥뿉 媛먯궗?섍퀬 ?됰났??媛먯젙???꾪뙆?섍퀬 ?띠뒿?덈떎.</p>
+          <p>?욎쑝濡쒕룄 ??留롮? 媛移??덈뒗 肄섑뀗痢좊? 諛쒓뎬?섏뿬 醫뗭? ?쒕꼫吏瑜??닿쿋?듬땲?? ???湲곗뾽?먭쾶 ?꾩옱 ?꾩슂??嫄? ??怨좉컝?섏? ?딅뒗 ?띾???湲고쉷 硫붿꽭吏?ㅼ쓣 ?댁쓣 ???덈뒗 ?먯썝怨?湲멸쾶 ?먮━ ?뚮┫ ???덈뒗 吏?띿꽦?낅땲?? 袁몄????꾩쟾?섍퀬 ?덉쑝硫? ?욎쑝濡쒕룄 ?꾩쟾??寃껋엯?덈떎. 洹?湲몄뿉????鍮좊Ⅴ怨??ш쾶 ?욎쑝濡??꾩쭊 ?????덈뒗 ?묒뾽 湲고쉶瑜?李얘퀬 ?띠뒿?덈떎. ?④퍡 ??醫뗭? ?몄긽???뚯븘媛硫??뚰넻?섍만 ?먰빀?덈떎. 媛먯궗?⑸땲??</p>
+        </div>
+        <img class="portrait" data-asset="a7a048712_orig.jpg" alt="COZYCAT representative" />
+      </div>
+    </section>
+
+    <section id="games" class="page" aria-labelledby="games-title">
+      <h1 id="games-title" class="page-title">Cozycat Games</h1>
+      <div class="game-list">
+        <article class="game-card">
+          <img class="game-banner" data-asset="editor/1000x500.png" alt="Merge Pocket Banner" />
+          <h2>癒몄? ?ъ폆: ?⑹튂硫댁꽌 留뚮뱶??二쇰㉧?????묒? ?몄긽</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.mergepocket" target="_blank" rel="noopener">
+              <img data-asset="editor/image-375_2.png" alt="Google Play" />
+            </a>
+            <a href="https://apps.apple.com/app/merge-pocket/id6757770385" target="_blank" rel="noopener">
+              <img data-asset="editor/image-376.png" alt="App Store" />
+            </a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <img class="game-banner" data-asset="editor/group-198-1.png" alt="Sticker Town Banner" />
+          <h2>?ㅽ떚而???? ?ㅽ떚而ㅻ? 遺숈씠硫?洹몃┝???꾩꽦?대낫?몄슂!</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.Cozycatinc.StickerTown" target="_blank" rel="noopener">
+              <img data-asset="published/image-375_5.png" alt="Google Play" />
+            </a>
+            <a href="https://apps.apple.com/app/sticker-town-puzzle/id6478581353" target="_blank" rel="noopener">
+              <img data-asset="editor/image-376_4.png" alt="App Store" />
+            </a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <img class="game-banner" data-asset="hidden-1_orig.png" alt="Hidden Friends Banner" />
+          <h2>?덈뱺 ?꾨젋利? ?⑥? 移쒓뎄??李얠븘遊먯슂!</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.hiddenfriends" target="_blank" rel="noopener">
+              <img data-asset="editor/image-375_4.png" alt="Google Play" />
+            </a>
+            <a href="https://apps.apple.com/app/hidden-friends/id6743651928" target="_blank" rel="noopener">
+              <img data-asset="editor/image-376_3.png" alt="App Store" />
+            </a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <img class="game-banner" data-asset="editor/group-189_1.png" alt="Color Town Banner" />
+          <h2>而щ윭??? ?ъ슫 罹먮┃?곕뱾怨?而щ윭留곹븯硫?留덉쓣???뺤옣?댁슂!</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.cozycat.colortoc" target="_blank" rel="noopener">
+              <img data-asset="editor/image-375_3.png" alt="Google Play" />
+            </a>
+            <a href="https://apps.apple.com/us/app/color-town-my-lovely-world/id1645751654" target="_blank" rel="noopener">
+              <img data-asset="editor/image-376_2.png" alt="App Store" />
+            </a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <img class="game-banner" data-asset="editor/group-188.png" alt="Amazing Grow Banner" />
+          <h2>留덇뎄留덇뎄 ?ㅼ슦湲? ?レ쓣 ?ㅼ슦怨??덈퍙??二쇱꽭??</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.amazinggrow.android.google.global.normal" target="_blank" rel="noopener">
+              <img data-asset="editor/image-375_1.png" alt="Google Play" />
+            </a>
+            <a href="https://apps.apple.com/us/app/amazing-grow/id6471392175" target="_blank" rel="noopener">
+              <img data-asset="editor/image-376_1.png" alt="App Store" />
+            </a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <h2>由ы뵆???댁쫰</h2>
+          <div class="quiz-grid">
+            <figure>
+              <img data-asset="sticker-1112_orig.png" alt="Leaflet quiz" />
+              <figcaption>?뺣떟? ?꾨옒????/figcaption>
+            </figure>
+            <figure>
+              <img data-asset="sticker_1.png" alt="Leaflet quiz answer" />
+            </figure>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="works" class="page" aria-labelledby="works-title">
+      <h1 id="works-title" class="page-title">Cozycat Portfolio</h1>
+      <p class="page-kicker">Games / Contents / Graphic Design / Web Design</p>
+      <div id="portfolio-root"></div>
+
+      <hr class="rule" />
+      <h2 class="section-heading">肄붿?罹ｌ씠 ?⑺뭹??寃뚯엫 ?뚮젅?댁쁺??蹂닿린</h2>
+      <ul class="link-list">
+        <li><a href="https://vimeo.com/661844630" target="_blank" rel="noopener">?덉텧!?⑤씪?멸렇猷⑤컢 ?뚮젅?댁쁺??/a></li>
+        <li><a href="https://www.youtube.com/watch?v=YBVmtBFVaVI" target="_blank" rel="noopener">?뷀궎利? OX,?ъ??좊떎 釉붾줉肄붾뵫 ?뚮젅?댁쁺??/a></li>
+        <li><a href="https://vimeo.com/704043696" target="_blank" rel="noopener">?④렇由щ뵒?몄툩 ?쒗럹?좎썡???뚮젅?댁쁺??/a></li>
+        <li><a href="https://vimeo.com/818239185" target="_blank" rel="noopener">Kinect?곕룞 ?먮뜑吏寃뚯엫?곸긽</a></li>
+        <li><a href="https://vimeo.com/818239185" target="_blank" rel="noopener">Kinect?곕룞 ?묐ぐ?닿쾶?꾩쁺??/a></li>
+      </ul>
+
+      <hr class="rule" />
+      <h2 class="section-heading">肄붿?罹ｌ씠 ?⑺뭹??寃뚯엫 ?뚮젅?대쭅??/h2>
+      <ul class="link-list">
+        <li><a href="https://dicle.kigepe.or.kr/kigepe/user/curating/form.do?curatingMastrSn=42&curatingClCd=ELEMENTARY" target="_blank" rel="noopener">?덉텧! ?⑤씪??洹몃（諛?Play</a></li>
+        <li><a href="http://cozycat.synology.me:8002/coding_v1_4_cheat/" target="_blank" rel="noopener">?뷀궎利? OX,?ъ??좊떎 釉붾줉肄붾뵫 Play</a></li>
+        <li><a href="https://web.zepeto.me/ko/detail/SZArS3wK898tkcsTjYJ9D2u?referrer=copylink_share" target="_blank" rel="noopener">?④렇由щ뵒?몄툩 ?쒗럹?좎썡??Play</a></li>
+        <li><a href="https://web.zepeto.me/ko/detail/ftMhu3wK87NtfpjxHMQhcqb?referrer=copylink_share" target="_blank" rel="noopener">泥?씪援?젣?꾩떆 ?쒗럹?좎썡??Play</a></li>
+        <li><a href="https://drive.google.com/drive/u/0/folders/1SSoTHpscP-BeJKkvIFENUXwzujaLmyAD" target="_blank" rel="noopener">肄붿?罹??ы듃?대━??PDF濡?蹂닿린</a></li>
+      </ul>
+    </section>
+
+    <section id="contact" class="page" aria-labelledby="contact-title">
+      <h1 id="contact-title" class="page-title">Contact Us.</h1>
+      <div class="contact-box">
+        <div class="contact-row">
+          <strong>?ъ뾽, ?쒗쑕, ?몄＜ 臾몄쓽</strong>
+          <a href="mailto:info@cozycat.kr">info@cozycat.kr</a>
+        </div>
+        <div class="contact-row">
+          <strong>寃뚯엫 愿??臾몄쓽</strong>
+          <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>
+        </div>
+        <div class="contact-row">
+          <strong>?곕씫泥?/strong>
+          +82-010-2206-0768
+        </div>
+        <div class="contact-row">
+          <strong>二쇱냼</strong>
+          ?쒖슱?밸퀎??援щ줈援?寃쎌씤濡?0媛湲?5, 9痢?br />
+          9F, 5 Gyeongin-ro 20ga-gil, Guro-gu, Seoul, South Korea
+        </div>
+      </div>
+    </section>
+
+    <section id="terms" class="page legal" aria-labelledby="terms-title">
+      <h1 id="terms-title" class="page-title">Game Service Terms of Use</h1>
+      <p><strong>Updated On Jan. 2026</strong></p>
+      <p>These Terms of Use ("Terms") govern your access to and use of games and related services provided by Cozycat Inc. ("Cozycat", "we", "us"), including mobile games, applications, and related content (collectively, the "Services"). By downloading, accessing, or using the Services, you agree to be bound by these Terms and our Privacy Policy. If you do not agree, you must not use the Services.</p>
+
+      <h2>1. Eligibility</h2>
+      <p>You must be at least 16 years old to use the Services. If you are under 18, or under the age of majority in your jurisdiction, you may only use the Services with the consent of your parent or legal guardian.</p>
+      <ul>
+        <li>You are using the Services for personal, non-commercial purposes.</li>
+        <li>You are legally permitted to use the Services under applicable law.</li>
+      </ul>
+
+      <h2>2. License and Restrictions</h2>
+      <h3>2.1 License</h3>
+      <p>We grant you a limited, non-exclusive, non-transferable, revocable license to download and use the Services for personal entertainment purposes only.</p>
+      <h3>2.2 Restrictions</h3>
+      <ul>
+        <li>Do not copy, modify, distribute, sell, lease, sublicense, or commercially exploit the Services.</li>
+        <li>Do not reverse engineer, decompile, or attempt to extract source code, except where permitted by law.</li>
+        <li>Do not use cheats, bots, automation tools, or exploits.</li>
+        <li>Do not use the Services to create or support competing products.</li>
+      </ul>
+      <p>All rights not expressly granted are reserved by the Company.</p>
+
+      <h2>3. Ownership</h2>
+      <p>The Services and all related content, including graphics, artwork, software, game mechanics, and trademarks, are owned by or licensed to Cozycat Inc. The Services are licensed, not sold.</p>
+
+      <h2>4. Accounts and Data</h2>
+      <p>The Services may support guest accounts and/or third-party sign-in such as Apple or Google. Some features may require account creation or third-party sign-in. Guest accounts may be tied to the device and may be lost if the app is deleted, data is reset, or the device is changed. Users are responsible for maintaining the security of their account and all activity occurring under their account.</p>
+      <h3>4.1 Data Storage and Persistence</h3>
+      <ul>
+        <li>Data storage methods may vary depending on the specific game.</li>
+        <li>In most games, including Hidden Friends, Color Town, and Merge Pocket, game data is stored locally on the device and will be permanently deleted when the app is uninstalled.</li>
+        <li>Except for Amazing Grow, game data will not be recoverable after app deletion. For Amazing Grow, data may be preserved only if the user explicitly enables the data saving feature through the in-game settings.</li>
+        <li>Cozycat Inc. does not guarantee data recovery unless the game explicitly supports and has enabled account-based or cloud saving.</li>
+      </ul>
+      <h3>4.2 Account Deletion</h3>
+      <p>If an in-app account deletion option is available, users may delete their account directly through the app. If no in-app deletion option is provided, users may request account deletion by contacting customer support at <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>. Account deletion is permanent and irreversible. Upon deletion, game progress, virtual items, and related data may be permanently removed. Certain data may be retained only where required by applicable law. We may suspend or terminate accounts that violate these Terms.</p>
+
+      <h2>5. User Content</h2>
+      <p>If the Services allow you to submit content, you are solely responsible for your User Content, must not upload unlawful, abusive, infringing, or harmful content, and grant us a worldwide, royalty-free license to use User Content solely for operating and improving the Services. We may remove User Content at our discretion.</p>
+
+      <h2>6. Ads and Third-Party Services</h2>
+      <p>The Services may display banner ads, interstitial ads, and rewarded video ads. The Services may also integrate third-party tools or services. We are not responsible for third-party content or services.</p>
+
+      <h2>7. In-App Purchases & Virtual Items</h2>
+      <ul>
+        <li>The Services may include optional purchases of virtual items or subscriptions.</li>
+        <li>Virtual items are licensed, not owned.</li>
+        <li>Virtual items have no real-world value.</li>
+        <li>Purchases are generally non-refundable, except where required by law.</li>
+        <li>Prices and availability may change.</li>
+        <li>All payments are processed by the applicable app store and subject to their terms.</li>
+      </ul>
+
+      <h2>8. Updates and Changes</h2>
+      <p>We may update, modify, suspend, or discontinue any part of the Services at any time. Continued use after updates means you accept the changes.</p>
+
+      <h2>9. Termination</h2>
+      <p>We may suspend or terminate your access if you violate these Terms, if required by law, or if the Services are discontinued. Upon termination, your license ends immediately and game progress or virtual items may be lost and not recoverable.</p>
+
+      <h2>10. Disclaimer</h2>
+      <p>THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE." We make no warranties that the Services will be uninterrupted or error-free or that the Services will meet your expectations.</p>
+
+      <h2>11. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, we are not liable for indirect, incidental, or consequential damages. Our total liability will not exceed the amount you paid to us, if any, in the past 12 months. Some jurisdictions do not allow certain limitations, so these may not apply to you.</p>
+
+      <h2>12. Indemnification</h2>
+      <p>You agree to indemnify and hold harmless Cozycat Inc. from claims arising from your use of the Services, your violation of these Terms, or your User Content.</p>
+
+      <h2>13. Governing Law</h2>
+      <p>These Terms are governed by the laws of the Republic of Korea, without regard to conflict of law principles.</p>
+
+      <h2>14. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. The latest version will always be available through the Services.</p>
+
+      <h2>15. Contact</h2>
+      <p>If you have questions about these Terms, contact us at <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>.</p>
+
+      <hr class="rule" />
+      <h1 class="page-title">?댁슜?쎄? (Terms of Use)</h1>
+      <p><strong>理쒖쥌 ?낅뜲?댄듃: 2026??1??/strong></p>
+      <p>蹂??댁슜?쎄?("?쎄?")? 二쇱떇?뚯궗 肄붿?罹?"肄붿?罹?, "?뱀궗")???쒓났?섎뒗 紐⑤컮??寃뚯엫, ?좏뵆由ъ??댁뀡 諛?愿??肄섑뀗痢??댄븯 ?듭묶?섏뿬 "?쒕퉬??)??????묎렐 諛??댁슜??洹쒖젙?⑸땲?? ?쒕퉬?ㅻ? ?ㅼ슫濡쒕뱶, ?묎렐 ?먮뒗 ?댁슜?⑥쑝濡쒖뜥 洹?섎뒗 蹂??쎄? 諛?媛쒖씤?뺣낫泥섎━諛⑹묠???숈쓽?섎뒗 寃껋쑝濡?媛꾩＜?⑸땲?? 蹂??쎄????숈쓽?섏? ?딅뒗 寃쎌슦, ?쒕퉬???댁슜??以묐떒?댁빞 ?⑸땲??</p>
+
+      <h2>1. ?댁슜 ?먭꺽</h2>
+      <p>?쒕퉬?ㅻ? ?댁슜?섎젮硫?留?16???댁긽?댁뼱???⑸땲?? 留?18??誘몃쭔?닿굅??嫄곗＜ 吏??쓽 ?깅뀈 ?곕졊??誘몃떖?섎뒗 寃쎌슦, 遺紐??먮뒗 踰뺤젙?由ъ씤???숈쓽 ?섏뿉留??쒕퉬?ㅻ? ?댁슜?????덉뒿?덈떎.</p>
+      <ul>
+        <li>媛쒖씤?겶룸퉬?곸뾽??紐⑹쟻?쇰줈 ?쒕퉬?ㅻ? ?댁슜?⑸땲??</li>
+        <li>愿??踰뺣쪧???곕씪 ?쒕퉬???댁슜???덉슜?⑸땲??</li>
+      </ul>
+
+      <h2>2. ?쇱씠?좎뒪 諛??쒗븳</h2>
+      <h3>2.1 ?쇱씠?좎뒪 遺??/h3>
+      <p>?뱀궗??洹?섏뿉寃?媛쒖씤?곸씤 ?ㅻ씫 紐⑹쟻???쒗븯???쒕퉬?ㅻ? ?ㅼ슫濡쒕뱶?섍퀬 ?댁슜?????덈뒗 鍮꾨룆?먯쟻, ?묐룄 遺덇?, ?щ씪?댁꽑??遺덇?, 痍⑥냼 媛?ν븳 ?쒗븳???쇱씠?좎뒪瑜?遺?ы빀?덈떎.</p>
+      <h3>2.2 ?댁슜 ?쒗븳</h3>
+      <ul>
+        <li>?쒕퉬?ㅻ? 蹂듭젣, ?섏젙, 諛고룷, ?먮ℓ, ?꾨?, ?곸뾽?곸쑝濡??댁슜?섎뒗 ?됱쐞</li>
+        <li>??났?? ?붿뺨?뚯씪 ?먮뒗 ?뚯뒪肄붾뱶 異붿텧 ?쒕룄(踰뺣쪧???덉슜?섎뒗 寃쎌슦 ?쒖쇅)</li>
+        <li>移섑듃, 遊? ?먮룞???꾧뎄, 痍⑥빟???낆슜</li>
+        <li>寃쎌웳 ?쒗뭹 ?먮뒗 ?쒕퉬??媛쒕컻쨌吏??紐⑹쟻???댁슜</li>
+      </ul>
+      <p>蹂??쎄??먯꽌 紐낆떆?곸쑝濡?遺?щ릺吏 ?딆? 紐⑤뱺 沅뚮━???뱀궗??洹?띾맗?덈떎.</p>
+
+      <h2>3. ?뚯쑀沅?/h2>
+      <p>?쒕퉬??諛?愿?⑤맂 紐⑤뱺 肄섑뀗痢?洹몃옒?? ?꾪듃?뚰겕, ?뚰봽?몄썾?? 寃뚯엫 硫붿빱?덉쬁, ?곹몴 ????二쇱떇?뚯궗 肄붿?罹ｌ뿉 ?섑빐 ?뚯쑀?섍굅???쇱씠?좎뒪???먯궛?낅땲?? ?쒕퉬?ㅻ뒗 ?먮ℓ?섎뒗 寃껋씠 ?꾨땲???쇱씠?좎뒪 ?뺥깭濡??쒓났?⑸땲??</p>
+
+      <h2>4. 怨꾩젙 諛??곗씠??/h2>
+      <p>?쒕퉬?ㅻ뒗 ?듬챸(寃뚯뒪?? 怨꾩젙 ?먮뒗 ????濡쒓렇??Apple, Google ????吏?먰븷 ???덉뒿?덈떎. ?쇰? 湲곕뒫? 怨꾩젙 ?앹꽦 ?먮뒗 ????濡쒓렇?몄씠 ?꾩슂?????덉뒿?덈떎. ?듬챸 怨꾩젙? 湲곌린??醫낆냽?????덉쑝硫? ????젣, ?곗씠??珥덇린?? 湲곌린 蹂寃????곗씠?곌? ?먯떎?????덉뒿?덈떎. ?ъ슜?먮뒗 怨꾩젙 蹂댁븞 諛?怨꾩젙 ?섏뿉??諛쒖깮?섎뒗 紐⑤뱺 ?쒕룞?????梨낆엫??吏묐땲??</p>
+      <h3>4.1 ?곗씠?????諛?蹂댁〈</h3>
+      <ul>
+        <li>?곗씠?????諛⑹떇? 寃뚯엫蹂꾨줈 ?ㅻ? ???덉뒿?덈떎.</li>
+        <li>?遺遺꾩쓽 寃뚯엫(?덈뱺 ?꾨젋利? 而щ윭??? 癒몄??ъ폆 ??? 寃뚯엫 ?곗씠?곌? 湲곌린??濡쒖뺄 ??λ릺硫? ????젣 ???곴뎄?곸쑝濡???젣?⑸땲??</li>
+        <li>留덇뎄留덇뎄 ?ㅼ슦湲곕? ?쒖쇅??寃뚯엫???곗씠?곕뒗 ????젣 ??蹂듦뎄?????놁뒿?덈떎. 留덇뎄留덇뎄 ?ㅼ슦湲곗쓽 寃쎌슦, ?ъ슜?먭? 寃뚯엫 ???듭뀡/?ㅼ젙?먯꽌 ?곗씠?????湲곕뒫??紐낆떆?곸쑝濡??쒖꽦?뷀븳 寃쎌슦?먮쭔 ?곗씠?곌? 蹂댁〈?????덉뒿?덈떎.</li>
+        <li>二쇱떇?뚯궗 肄붿?罹ｌ? 怨꾩젙 湲곕컲 ?먮뒗 ?대씪?곕뱶 ???湲곕뒫??紐낆떆?곸쑝濡??쒓났?섍퀬 ?쒖꽦?뷀븯吏 ?딅뒗 ???곗씠??蹂듦뎄瑜?蹂댁옣?섏? ?딆뒿?덈떎.</li>
+      </ul>
+      <h3>4.2 怨꾩젙 ??젣</h3>
+      <p>????怨꾩젙 ??젣 湲곕뒫???쒓났?섎뒗 寃쎌슦, ?ъ슜?먮뒗 ?깆쓣 ?듯빐 吏곸젒 怨꾩젙 ??젣瑜??붿껌?????덉뒿?덈떎. ?대떦 湲곕뒫???쒓났?섏? ?딅뒗 寃쎌슦, <a href="mailto:support@cozycat.kr">support@cozycat.kr</a> 濡?臾몄쓽?섏뿬 ??젣瑜??붿껌?????덉뒿?덈떎. 怨꾩젙 ??젣 ???⑸━?곸씤 蹂몄씤 ?뺤씤 ?덉감媛 ?붽뎄?????덉쑝硫? ??젣???곴뎄?곸씠硫??섎룎由????놁뒿?덈떎. 寃뚯엫 吏꾪뻾?? 媛???꾩씠??諛?愿???곗씠?곕뒗 ?곴뎄 ??젣?????덉뒿?덈떎. 踰뺣졊??蹂댁〈???붽뎄?섎뒗 ?쇰? ?곗씠?곕뒗 ?덉쇅?곸쑝濡?蹂닿??????덉뒿?덈떎.</p>
+
+      <h2>5. ?ъ슜??肄섑뀗痢?/h2>
+      <p>?쒕퉬?ㅺ? ?ъ슜??肄섑뀗痢??쒖텧???덉슜?섎뒗 寃쎌슦, ?ъ슜??肄섑뀗痢좎뿉 ???梨낆엫? ?꾩쟻?쇰줈 ?ъ슜?먯뿉寃??덉뒿?덈떎. 遺덈쾿, ?좏빐, 移⑦빐 肄섑뀗痢좊? ?낅줈?쒗빐?쒕뒗 ???섎ŉ, 洹?섎뒗 ?쒕퉬???댁쁺 諛?媛쒖꽑 紐⑹쟻???쒗빐 ?ъ슜??肄섑뀗痢??ъ슜????????멸퀎??臾댁긽 ?쇱씠?좎뒪瑜??뱀궗??遺?ы빀?덈떎. ?뱀궗???щ웾???곕씪 ?ъ슜??肄섑뀗痢좊? ??젣?????덉뒿?덈떎.</p>
+
+      <h2>6. 愿묎퀬 諛??????쒕퉬??/h2>
+      <p>?쒕퉬?ㅼ뿉??諛곕꼫, ?꾨㈃ 愿묎퀬, 蹂댁긽??愿묎퀬 ?깆씠 ?ы븿?????덉뒿?덈떎. ?먰븳 ?????쒕퉬?ㅺ? ?듯빀?????덉쑝硫? ?뱀궗??????肄섑뀗痢??먮뒗 ?쒕퉬?ㅼ뿉 ???梨낆엫??吏吏 ?딆뒿?덈떎. ?????쒕퉬?ㅻ뒗 媛??쒕퉬???쒓났?먯쓽 媛쒖씤?뺣낫泥섎━諛⑹묠 諛??쎄????곸슜?⑸땲??</p>
+
+      <h2>7. ?몄빋 援щℓ 諛?媛???꾩씠??/h2>
+      <p>?쒕퉬?ㅼ뿉??媛???꾩씠???먮뒗 援щ룆 援щℓ媛 ?ы븿?????덉뒿?덈떎. 媛???꾩씠?쒖? ?뚯쑀媛 ?꾨땶 ?ъ슜 ?쇱씠?좎뒪?대ŉ ?ㅼ젣 ?뷀룓 媛移섎? 媛吏吏 ?딆뒿?덈떎. 踰뺣졊?먯꽌 ?붽뎄?섎뒗 寃쎌슦瑜??쒖쇅?섍퀬 ?섎텋?섏? ?딆뒿?덈떎. 寃곗젣??Apple ?먮뒗 Google ?깆뒪?좎뼱瑜??듯빐 泥섎━?⑸땲??</p>
+
+      <h2>8. ?쒕퉬??蹂寃?/h2>
+      <p>?뱀궗???몄젣?좎? ?쒕퉬?ㅼ쓽 ?쇰? ?먮뒗 ?꾨?瑜??섏젙, 以묐떒 ?먮뒗 醫낅즺?????덉뒿?덈떎. 蹂寃????쒕퉬?ㅻ? 怨꾩냽 ?댁슜??寃쎌슦 蹂寃??ы빆???숈쓽??寃껋쑝濡?媛꾩＜?⑸땲??</p>
+
+      <h2>9. ?쒕퉬??醫낅즺</h2>
+      <p>蹂??쎄? ?꾨컲, 踰뺤쟻 ?붽뎄, ?쒕퉬??醫낅즺 ?깆쓽 ?ъ쑀媛 ?덉쓣 寃쎌슦 ?쒕퉬???댁슜??醫낅즺?????덉뒿?덈떎. 醫낅즺 ??紐⑤뱺 ?쇱씠?좎뒪??利됱떆 醫낅즺?섎ŉ, ?곗씠?곕뒗 蹂듦뎄?섏? ?딆쓣 ???덉뒿?덈떎.</p>
+
+      <h2>10. 硫댁콉 議고빆</h2>
+      <p>?쒕퉬?ㅻ뒗 "?덈뒗 洹몃?濡? ?쒓났?⑸땲?? ?뱀궗???쒕퉬?ㅼ쓽 臾댁쨷?⑥꽦, 臾댁삤瑜섏꽦, 湲곕? 異⑹”??????대뼚??蹂댁쬆???섏? ?딆뒿?덈떎.</p>
+
+      <h2>11. 梨낆엫 ?쒗븳</h2>
+      <p>愿??踰뺣쪧???덉슜?섎뒗 理쒕? 踰붿쐞 ?댁뿉?? ?뱀궗??媛꾩젒?겶룸??섏쟻쨌寃곌낵???먰빐?????梨낆엫吏吏 ?딆뒿?덈떎. 珥?梨낆엫 ?쒕룄??理쒓렐 12媛쒖썡媛??ъ슜?먭? 吏遺덊븳 湲덉븸??珥덇낵?섏? ?딆뒿?덈떎.</p>
+
+      <h2>12. 硫댁콉</h2>
+      <p>洹?섎뒗 ?쒕퉬???댁슜, 蹂??쎄? ?꾨컲, ?ъ슜??肄섑뀗痢좊줈 ?명빐 諛쒖깮?섎뒗 紐⑤뱺 泥?뎄濡쒕???二쇱떇?뚯궗 肄붿?罹ｌ쓣 硫댁콉?⑸땲??</p>
+
+      <h2>13. 以嫄곕쾿</h2>
+      <p>蹂??쎄?? ??쒕?援?踰뺣쪧???곕씪 ?댁꽍?⑸땲??</p>
+
+      <h2>14. ?쎄? 蹂寃?/h2>
+      <p>蹂??쎄?? ?낅뜲?댄듃?????덉쑝硫? 理쒖떊 踰꾩쟾? ?쒕퉬???댁뿉???뺤씤?????덉뒿?덈떎.</p>
+
+      <h2>15. 臾몄쓽</h2>
+      <p><a href="mailto:support@cozycat.kr">support@cozycat.kr</a></p>
+    </section>
+
+    <section id="privacy" class="page legal" aria-labelledby="privacy-title">
+      <h1 id="privacy-title" class="page-title">Game Service Privacy Policy</h1>
+      <p><strong>Updated On Jan. 2026</strong></p>
+      <p>Cozycat Inc. ("Cozycat", "we", "us") respects your privacy and is committed to protecting the personal information of users ("you") of our mobile games and related services (collectively, the "Apps"). This Privacy Policy explains what information we collect, how we use it, and the choices you have. By downloading, accessing, or using our Apps, you agree to the collection and use of information in accordance with this Privacy Policy and our Terms of Use. If you do not agree with this Privacy Policy, please do not use our Apps.</p>
+
+      <h2>1. Applicable Law</h2>
+      <p>Cozycat Inc. is a company based in the Republic of Korea. We process personal information in accordance with the Personal Information Protection Act of Korea (PIPA) and other applicable laws. Where required, we also follow applicable platform policies and generally accepted international privacy principles.</p>
+
+      <h2>2. Information We Collect</h2>
+      <h3>2.1 Information Collected Automatically</h3>
+      <ul>
+        <li>Device Information: device model, operating system, language, time zone</li>
+        <li>Identifiers: advertising identifiers, randomly generated device or app identifiers</li>
+        <li>Usage Data: gameplay progress, in-game events, session length, interactions, achievements</li>
+        <li>Technical Data: app version, crash logs, performance data, error reports</li>
+      </ul>
+      <p>We use Firebase Analytics to understand in-game content usage and player behavior, and Firebase Crashlytics to collect crash and error logs to improve stability and performance.</p>
+      <h3>2.2 Information You Provide Voluntarily</h3>
+      <ul>
+        <li>Information included in customer support inquiries such as email address and message content</li>
+        <li>Information associated with account-based sign-in, if supported, such as Apple or Google sign-in</li>
+      </ul>
+      <p>We do not require users to provide personal information to play most of our games.</p>
+      <h3>2.3 Accounts and Sign-In</h3>
+      <p>Our Apps may support guest accounts and/or third-party sign-in such as Apple or Google. Guest accounts are typically tied to the device and may be lost if the app is deleted, the device is changed, or local data is reset.</p>
+
+      <h2>3. How We Use Information</h2>
+      <ul>
+        <li>Operate, maintain, and improve our Apps</li>
+        <li>Analyze gameplay and user behavior to improve content and balance</li>
+        <li>Fix bugs, crashes, and technical issues</li>
+        <li>Provide customer support</li>
+        <li>Display advertisements and measure their performance</li>
+        <li>Prevent fraud, abuse, or illegal activity</li>
+        <li>Comply with legal obligations</li>
+      </ul>
+      <p>We process only the information necessary to achieve these purposes.</p>
+
+      <h2>4. Advertising and Third-Party Services</h2>
+      <p>Our Apps may display advertisements provided by third-party advertising and mediation partners. We currently use or may use services including AppLovin, Google (AdMob / Google Ads), Unity Ads, ironSource, and other similar advertising or mediation providers. These partners may collect device identifiers and usage data in accordance with their own privacy policies for purposes such as ad delivery, frequency capping, analytics, and performance measurement.</p>
+      <p>You can control personalized advertising through your device settings: iOS Settings ??Privacy & Security ??Tracking / Apple Advertising, and Android Settings ??Google ??Ads. We do not control how third parties process data and encourage you to review their respective privacy policies. Third-party services are governed by their respective terms of use and privacy policies, and we are not responsible for their practices.</p>
+
+      <h2>5. Data Storage and Retention</h2>
+      <p>Data storage methods vary depending on the specific game. In most of our games, game data is stored locally on the device and will be permanently deleted when the app is uninstalled. Except for Amazing Grow, game data is generally not recoverable after app deletion. For Amazing Grow, data can be preserved only if the user explicitly enables data saving through the in-game options/settings. We do not guarantee data recovery unless a game explicitly supports account-based or cloud saving. We retain personal information only for as long as necessary to fulfill the purposes described in this Privacy Policy, unless a longer retention period is required by law.</p>
+
+      <h2>6. Account and Data Deletion</h2>
+      <p>If an in-app account or data deletion option is available, you may delete your account directly through the App. If no in-app deletion option is provided, you may request deletion by contacting us at <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>. Account and data deletion is permanent and irreversible, except where retention is required by applicable law.</p>
+
+      <h2>7. Children's Privacy</h2>
+      <p>Our Apps are intended for users 16 years of age or older. If you are under 18, you may use the Apps only with the consent of a parent or legal guardian. We do not knowingly collect personal information from children under the applicable minimum age. If you believe that we have collected personal information from a minor in error, please contact us and we will take appropriate steps to delete such information.</p>
+
+      <h2>8. Data Security</h2>
+      <p>We take reasonable administrative, technical, and organizational measures to protect information against unauthorized access, loss, misuse, or alteration. However, no method of transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
+
+      <h2>9. International Data Transfers</h2>
+      <p>Some of our service providers may process data on servers located outside of your country. In such cases, we take reasonable steps to ensure that personal information is protected in accordance with applicable laws and this Privacy Policy.</p>
+
+      <h2>10. Changes to This Privacy Policy</h2>
+      <p>We may update this Privacy Policy from time to time. The latest version will always be available through our Apps or website. Your continued use of the Apps after an update constitutes acceptance of the revised Privacy Policy.</p>
+
+      <h2>11. Contact Us</h2>
+      <p>If you have any questions or requests regarding this Privacy Policy or your personal data, please contact us at <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>.</p>
+
+      <hr class="rule" />
+      <h1 class="page-title">媛쒖씤?뺣낫泥섎━諛⑹묠 (Privacy Policy)</h1>
+      <p><strong>理쒖쥌 ?낅뜲?댄듃: 2026??1??/strong></p>
+      <p>二쇱떇?뚯궗 肄붿?罹??댄븯 "肄붿?罹?, "?뱀궗")? ?댁슜???댄븯 "洹??)??媛쒖씤?뺣낫 蹂댄샇瑜?以묒슂?섍쾶 ?앷컖?섎ŉ, ?뱀궗媛 ?쒓났?섎뒗 紐⑤컮??寃뚯엫 諛?愿???쒕퉬???댄븯 ?듭묶?섏뿬 "??) ?댁슜怨?愿?⑦븯???섏쭛?섎뒗 媛쒖씤?뺣낫瑜?蹂댄샇?섍린 ?꾪빐 理쒖꽑???ㅽ븯怨??덉뒿?덈떎. 蹂?媛쒖씤?뺣낫泥섎━諛⑹묠? ?뱀궗媛 ?대뼡 ?뺣낫瑜??섏쭛?섎ŉ, ?대떦 ?뺣낫瑜??대뼸寃??ъ슜?섍퀬, 洹?섍? ?대뼚???좏깮沅뚯쓣 媛吏?붿?瑜??ㅻ챸?⑸땲?? 洹?섍? ?깆쓣 ?ㅼ슫濡쒕뱶, ?묎렐 ?먮뒗 ?댁슜?⑥쑝濡쒖뜥 蹂?媛쒖씤?뺣낫泥섎━諛⑹묠 諛??댁슜?쎄????곕Ⅸ ?뺣낫 ?섏쭛 諛??댁슜???숈쓽??寃껋쑝濡?媛꾩＜?⑸땲?? 蹂?媛쒖씤?뺣낫泥섎━諛⑹묠???숈쓽?섏? ?딅뒗 寃쎌슦, ?깆쓣 ?댁슜?섏? 留덉떆湲?諛붾엻?덈떎.</p>
+
+      <h2>1. ?곸슜 踰뺣졊</h2>
+      <p>二쇱떇?뚯궗 肄붿?罹ｌ? ??쒕?援?뿉 ?ㅻ┰?섏뿀?듬땲?? ?뱀궗????쒕?援?쓽 媛쒖씤?뺣낫 蹂댄샇踰?Personal Information Protection Act, "PIPA") 諛?愿??踰뺣졊??以?섑븯??媛쒖씤?뺣낫瑜?泥섎━?⑸땲?? ?꾩슂??寃쎌슦 Apple App Store, Google Play ???뚮옯???뺤콉怨??쇰컲?곸쑝濡??몄젙?섎뒗 援?젣??媛쒖씤?뺣낫 蹂댄샇 ?먯튃???④퍡 以?섑빀?덈떎.</p>
+
+      <h2>2. ?섏쭛?섎뒗 ?뺣낫</h2>
+      <h3>2.1 ?먮룞?쇰줈 ?섏쭛?섎뒗 ?뺣낫</h3>
+      <ul>
+        <li>湲곌린 ?뺣낫: 湲곌린 紐⑤뜽紐? ?댁쁺泥댁젣, ?몄뼱, ?쒓컙?</li>
+        <li>?앸퀎???뺣낫: 愿묎퀬 ?앸퀎??IDFA, Google 愿묎퀬 ID), 臾댁옉?꾨줈 ?앹꽦??湲곌린 ?먮뒗 ???앸퀎??/li>
+        <li>?댁슜 ?뺣낫: 寃뚯엫 吏꾪뻾?? 寃뚯엫 ???대깽?? ?몄뀡 湲몄씠, ?곹샇?묒슜 湲곕줉, ?낆쟻 ?뺣낫</li>
+        <li>湲곗닠 ?뺣낫: ??踰꾩쟾, 異⑸룎 濡쒓렇, ?깅뒫 ?곗씠?? ?ㅻ쪟 蹂닿퀬??/li>
+      </ul>
+      <p>?뱀궗??寃뚯엫 ??肄섑뀗痢??댁슜 ?꾪솴 諛??댁슜???됰룞??遺꾩꽍?섍린 ?꾪빐 Firebase Analytics瑜??ъ슜?섎ŉ, ???덉젙??諛??깅뒫 媛쒖꽑???꾪빐 Firebase Crashlytics瑜??듯빐 ?ㅻ쪟 諛?異⑸룎 濡쒓렇瑜??섏쭛?⑸땲??</p>
+      <h3>2.2 ?댁슜?먭? ?먮컻?곸쑝濡??쒓났?섎뒗 ?뺣낫</h3>
+      <ul>
+        <li>怨좉컼 吏??臾몄쓽 ???쒓났?섎뒗 ?뺣낫(?? ?대찓??二쇱냼, 臾몄쓽 ?댁슜)</li>
+        <li>怨꾩젙 湲곕컲 濡쒓렇?몄씠 吏?먮릺??寃쎌슦, ?대떦 濡쒓렇?멸낵 愿?⑤맂 ?뺣낫(?? Apple ?먮뒗 Google 濡쒓렇???뺣낫)</li>
+      </ul>
+      <p>?遺遺꾩쓽 寃뚯엫? 媛쒖씤?뺣낫 ?쒓났 ?놁씠???댁슜?????덉뒿?덈떎.</p>
+      <h3>2.3 怨꾩젙 諛?濡쒓렇??/h3>
+      <p>?깆? ?듬챸(寃뚯뒪?? 怨꾩젙 諛?????怨꾩젙 濡쒓렇??Apple, Google ????吏?먰븷 ???덉뒿?덈떎. ?듬챸 怨꾩젙? ?쇰컲?곸쑝濡?湲곌린??醫낆냽?섎ŉ, ????젣, 湲곌린 蹂寃??먮뒗 濡쒖뺄 ?곗씠??珥덇린?????곗씠?곌? ?먯떎?????덉뒿?덈떎.</p>
+
+      <h2>3. ?뺣낫 ?댁슜 紐⑹쟻</h2>
+      <ul>
+        <li>?깆쓽 ?댁쁺, ?좎? 諛?媛쒖꽑</li>
+        <li>寃뚯엫 肄섑뀗痢?諛?諛몃윴??媛쒖꽑???꾪븳 ?댁슜 遺꾩꽍</li>
+        <li>踰꾧렇, 異⑸룎 諛?湲곗닠??臾몄젣 ?닿껐</li>
+        <li>怨좉컼 吏???쒓났</li>
+        <li>愿묎퀬 ?쒖떆 諛?愿묎퀬 ?깃낵 痢≪젙</li>
+        <li>遺???댁슜, ?⑥슜 ?먮뒗 遺덈쾿 ?됱쐞 諛⑹?</li>
+        <li>踰뺤쟻 ?섎Т ?댄뻾</li>
+      </ul>
+      <p>?뱀궗????紐⑹쟻???ъ꽦?섎뒗 ???꾩슂??踰붿쐞 ?댁뿉?쒕쭔 ?뺣낫瑜?泥섎━?⑸땲??</p>
+
+      <h2>4. 愿묎퀬 諛??????쒕퉬??/h2>
+      <p>?깆뿉??????愿묎퀬 ?ㅽ듃?뚰겕 ?먮뒗 愿묎퀬 以묎컻 ?뚰듃?덇? ?쒓났?섎뒗 愿묎퀬媛 ?쒖떆?????덉뒿?덈떎. ?뱀궗??AppLovin, Google(AdMob / Google Ads), Unity Ads, ironSource ?깆쓣 ?ы븿?섎릺 ?댁뿉 ?쒖젙?섏? ?딅뒗 愿묎퀬 諛?以묎컻 ?쒕퉬?ㅻ? ?꾩옱 ?ъ슜?섍굅???ν썑 ?ъ슜?????덉뒿?덈떎. ?대윭???뚰듃?덈뒗 愿묎퀬 ?쒓났, ?몄텧 鍮덈룄 愿由? 遺꾩꽍 諛??깃낵 痢≪젙 ?깆쓽 紐⑹쟻???꾪빐 媛곸옄??媛쒖씤?뺣낫泥섎━諛⑹묠???곕씪 湲곌린 ?앸퀎??諛??댁슜 ?곗씠?곕? ?섏쭛?????덉뒿?덈떎.</p>
+      <p>媛쒖씤 留욎땄??愿묎퀬 ?ㅼ젙? iOS ?ㅼ젙 ??媛쒖씤?뺣낫 蹂댄샇 諛?蹂댁븞 ??異붿쟻 / Apple 愿묎퀬, Android ?ㅼ젙 ??Google ??愿묎퀬 寃쎈줈瑜??듯빐 ?쒖뼱?????덉뒿?덈떎. ?뱀궗?????먯쓽 ?곗씠??泥섎━ 諛⑹떇??????듭젣?섏? ?딆쑝硫? 媛??????쒕퉬?ㅻ뒗 ?대떦 ?쒕퉬???쒓났?먯쓽 ?댁슜?쎄? 諛?媛쒖씤?뺣낫泥섎━諛⑹묠???곸슜?⑸땲?? ?뱀궗?????먯쓽 媛쒖씤?뺣낫 泥섎━ 愿?됱뿉 ???梨낆엫??吏吏 ?딆쑝硫? 洹?섍퍡?쒕뒗 媛????먯쓽 ?뺤콉??寃?좏븯?쒓린瑜?沅뚯옣?⑸땲??</p>
+
+      <h2>5. ?곗씠?????諛?蹂댁〈</h2>
+      <p>?곗씠?????諛⑹떇? 寃뚯엫蹂꾨줈 ?곸씠?????덉뒿?덈떎. ?遺遺꾩쓽 寃뚯엫? 寃뚯엫 ?곗씠?곌? 湲곌린??濡쒖뺄濡???λ릺硫? ????젣 ???대떦 ?곗씠?곕뒗 ?곴뎄?곸쑝濡???젣?⑸땲?? 留덇뎄留덇뎄 ?ㅼ슦湲곕? ?쒖쇅??寃뚯엫???곗씠?곕뒗 ????젣 ???쇰컲?곸쑝濡?蹂듦뎄?????놁뒿?덈떎. 留덇뎄留덇뎄 ?ㅼ슦湲곗쓽 寃쎌슦, ?ъ슜?먭? 寃뚯엫 ???듭뀡/?ㅼ젙?먯꽌 ?곗씠?????湲곕뒫??紐낆떆?곸쑝濡??쒖꽦?뷀븳 寃쎌슦?먮쭔 ?곗씠?곌? 蹂댁〈?????덉뒿?덈떎. 怨꾩젙 湲곕컲 ?먮뒗 ?대씪?곕뱶 ???湲곕뒫??紐낆떆?곸쑝濡??쒓났?섍퀬 ?쒖꽦?붾릺吏 ?딅뒗 ?? ?뱀궗???곗씠??蹂듦뎄瑜?蹂댁옣?섏? ?딆뒿?덈떎. ?뱀궗??蹂?媛쒖씤?뺣낫泥섎━諛⑹묠??紐낆떆??紐⑹쟻???ъ꽦?섎뒗 ???꾩슂??湲곌컙 ?숈븞留?媛쒖씤?뺣낫瑜?蹂닿??섎ŉ, 踰뺣졊???곕씪 ??湲?蹂댁〈 湲곌컙???붽뎄?섎뒗 寃쎌슦?먮뒗 ?대떦 踰뺣졊???곕쫭?덈떎.</p>
+
+      <h2>6. 怨꾩젙 諛??곗씠????젣</h2>
+      <p>????怨꾩젙 ?먮뒗 ?곗씠????젣 湲곕뒫???쒓났?섎뒗 寃쎌슦, 洹?섎뒗 ?깆쓣 ?듯빐 吏곸젒 ??젣瑜??붿껌?????덉뒿?덈떎. ?대떦 湲곕뒫???쒓났?섏? ?딅뒗 寃쎌슦, ?꾨옒 ?대찓?쇰줈 ??젣瑜??붿껌?????덉뒿?덈떎. <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>. 怨꾩젙 諛??곗씠????젣??踰뺣졊??蹂댁〈 ?섎Т媛 ?덈뒗 寃쎌슦瑜??쒖쇅?섍퀬 ?곴뎄?곸씠硫??섎룎由????놁뒿?덈떎.</p>
+
+      <h2>7. ?꾨룞??媛쒖씤?뺣낫 蹂댄샇</h2>
+      <p>?깆? 留?16???댁긽 ?댁슜?먮? ??곸쑝濡??⑸땲?? 留?18??誘몃쭔???댁슜?먮뒗 遺紐??먮뒗 踰뺤젙?由ъ씤???숈쓽 ?섏뿉留??깆쓣 ?댁슜?????덉뒿?덈떎. ?뱀궗??愿??踰뺣졊???덉슜??理쒖냼 ?곕졊 誘몃쭔???꾨룞?쇰줈遺??媛쒖씤?뺣낫瑜?怨좎쓽濡??섏쭛?섏? ?딆뒿?덈떎. 留뚯빟 ?뱀궗媛 誘몄꽦?꾩옄??媛쒖씤?뺣낫瑜??ㅻ쪟濡??섏쭛?섏??ㅺ퀬 ?먮떒?섎뒗 寃쎌슦, ?뱀궗濡??곕씫 二쇱떆硫??곸젅??議곗튂瑜??듯빐 ?대떦 ?뺣낫瑜???젣?섍쿋?듬땲??</p>
+
+      <h2>8. 媛쒖씤?뺣낫 蹂댄샇 議곗튂</h2>
+      <p>?뱀궗??媛쒖씤?뺣낫??臾대떒 ?묎렐, 遺꾩떎, ?ㅼ슜 ?먮뒗 蹂議곕? 諛⑹??섍린 ?꾪빐 ?⑸━?곸씤 愿由ъ쟻쨌湲곗닠?겶룹“吏곸쟻 蹂댄샇 議곗튂瑜?痍⑦븯怨??덉뒿?덈떎. ?ㅻ쭔, ?대뼚???꾩넚 ?먮뒗 ???諛⑹떇???꾩쟾??蹂댁븞??蹂댁옣?????놁쑝硫? ?덈??곸씤 蹂댁븞??蹂댁옣?섏????딆뒿?덈떎.</p>
+
+      <h2>9. 援?쇅 ?댁쟾</h2>
+      <p>?쇰? ?쒕퉬???쒓났?먮뒗 洹?섏쓽 援?? ??吏??뿉 ?꾩튂???쒕쾭?먯꽌 ?곗씠?곕? 泥섎━?????덉뒿?덈떎. ?대윭??寃쎌슦?먮룄 ?뱀궗??愿??踰뺣졊 諛?蹂?媛쒖씤?뺣낫泥섎━諛⑹묠???곕씪 媛쒖씤?뺣낫媛 ?곸젅??蹂댄샇?섎룄濡??⑸━?곸씤 議곗튂瑜?痍⑦빀?덈떎.</p>
+
+      <h2>10. 媛쒖씤?뺣낫泥섎━諛⑹묠 蹂寃?/h2>
+      <p>?뱀궗???꾩슂???곕씪 蹂?媛쒖씤?뺣낫泥섎━諛⑹묠??蹂寃쏀븷 ???덉뒿?덈떎. 理쒖떊 踰꾩쟾? ??긽 ???먮뒗 ?뱀궗?댄듃瑜??듯빐 ?뺤씤?????덉쑝硫? 蹂寃????깆쓣 怨꾩냽 ?댁슜??寃쎌슦 蹂寃쎈맂 媛쒖씤?뺣낫泥섎━諛⑹묠???숈쓽??寃껋쑝濡?媛꾩＜?⑸땲??</p>
+
+      <h2>11. 臾몄쓽泥?/h2>
+      <p>蹂?媛쒖씤?뺣낫泥섎━諛⑹묠 ?먮뒗 媛쒖씤?뺣낫 泥섎━? 愿?⑦븯??臾몄쓽 ?ы빆???덈뒗 寃쎌슦 ?꾨옒濡??곕씫??二쇱떆湲?諛붾엻?덈떎. <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        copyright ??2026 COZYCAT
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#home">Home</a>
+        <a href="#games">Games</a>
+        <a href="#works">Works</a>
+        <a href="#contact">Contact</a>
+        <a href="#terms">Terms of Service</a>
+        <a href="#privacy">Privacy Policy</a>
+      </nav>
+    </div>
+  </footer>
+
   <script>
-  const btnKo = document.getElementById('btn-ko');
-  const btnEn = document.getElementById('btn-en');
+    const GITHUB_ASSET_BASE = "https://raw.githubusercontent.com/bbgmiri/ad-txt/main/assets/";
+    const portfolioSections = [
+      {
+        title: "肄붿?罹??쒕퉬??寃뚯엫",
+        images: [
+          "sticker-flowersday-port.png", "en.png", "1-ja.png",
+          "sticker-park-port.png", "1024x500.png", "1080x500.png",
+          "sticker-amusementpark-port.png", "port.png", "sticker-por5t.png",
+          "sticker-port.png", "kr.png", "123123.png",
+          "931982a6b0964106a0003b01a7550c19.png", "80786185.png", "group-188.png"
+        ]
+      },
+      {
+        title: "泥댄뿕??寃뚯엫, 釉뚮옖???띾낫 寃뚯엫, ?붾（??寃뚯엫",
+        images: [
+          "1.png", "2.png", "3.png", "4.jpg", "3.jpg", "117245843.png",
+          "2-20221214.png", "5236654546463dfdfdgdfg.png", "3-ui.png",
+          "12341234.png", "234234234234.png", "6-20221216.png"
+        ]
+      },
+      {
+        title: "援먯쑁??寃뚯엫 肄섑뀗痢?,
+        images: [
+          "234234_1.png", "cozycat-61f4770f222873353b16.png", "20210819.png",
+          "sns-20210819.png", "20210819_1.png", "23424234_1.png",
+          "car-3_1.png", "car-result1_1.png", "1490814603_1.png",
+          "1861631965.png", "23423423423234234234.png", "234234234.png",
+          "32234234234.png", "23424234234234.png", "234234234234234.png"
+        ]
+      },
+      {
+        title: "?꾩떆 ?붿옄??,
+        images: [
+          "9_2.png", "8_2.png", "10_2.png", "ai-2-20211230.png",
+          "5.png", "2-20211219.png", "1046972179.png", "222-orig.png",
+          "331056647.png", "11.png", "1-orig.png"
+        ]
+      },
+      {
+        title: "?뱁뵆?ロ뤌, ?댄뵆由ъ??댁뀡 UI, 由ы뵆???붿옄??,
+        images: [
+          "cozycat-d593f369a31b94aa16d9.jpg", "1534828078642110-1-orig.png",
+          "ui-1.png", "ui-3.png", "ui-4.jpg", "222-1-orig.png",
+          "ui-1-orig.png", "ui-2-orig.png", "ui-3-orig.png", "ui-4-orig.png",
+          "202892509.png", "1234124124124.png", "mask-group.png", "1.jpg", "218276983.png"
+        ]
+      },
+      {
+        title: "罹먮┃???붿옄?? 留뚰솕 肄섑뀗痢?,
+        images: [
+          "308929677.png", "1867152852.png", "3d-20230222.png",
+          "1731481893.gif", "2.gif", "2127796639.gif", "4.png",
+          "123424123123.png", "8.png", "2024.png", "9.png",
+          "10.png", "7.png", "3.png", "12.png", "14.png"
+        ]
+      }
+    ];
 
-  const setLanguage = (lang) => {
-    document.querySelectorAll('[data-ko]').forEach(el => {
-      el.innerText = el.dataset[lang];
+    const pages = [...document.querySelectorAll(".page")];
+    const navItems = [...document.querySelectorAll("[data-nav]")];
+    const menuToggle = document.querySelector(".menu-toggle");
+    const primaryNav = document.querySelector(".primary-nav");
+
+    function encodeAssetPath(path) {
+      return path.split("/").map(encodeURIComponent).join("/");
+    }
+
+    function githubUrl(path) {
+      return GITHUB_ASSET_BASE + encodeAssetPath(path);
+    }
+
+    function setImageSources() {
+      document.querySelectorAll("img[data-asset]").forEach((img) => {
+        const asset = img.dataset.asset;
+        img.src = githubUrl(asset);
+      });
+    }
+
+    function renderPortfolio() {
+      const root = document.getElementById("portfolio-root");
+      root.innerHTML = portfolioSections.map((section) => {
+        const images = section.images.map((path) => {
+          return `
+            <a href="${githubUrl(path)}" target="_blank" rel="noopener">
+              <img data-asset="${path}" alt="${section.title}" loading="lazy" />
+            </a>
+          `;
+        }).join("");
+
+        return `
+          <section class="portfolio-section">
+            <h2 class="section-heading">${section.title}</h2>
+            <div class="gallery">${images}</div>
+          </section>
+        `;
+      }).join("");
+    }
+
+    function currentPageId() {
+      const id = location.hash.replace("#", "") || "home";
+      return pages.some((page) => page.id === id) ? id : "home";
+    }
+
+    function showPage(id) {
+      pages.forEach((page) => page.classList.toggle("active", page.id === id));
+      navItems.forEach((item) => item.classList.toggle("active", item.dataset.nav === id));
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      primaryNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    window.addEventListener("hashchange", () => showPage(currentPageId()));
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = primaryNav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
     });
 
-    btnKo.classList.toggle('selected', lang === 'ko');
-    btnEn.classList.toggle('selected', lang === 'en');
-  };
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".site-header")) {
+        primaryNav.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }
+    });
 
-  btnKo.addEventListener('click', () => setLanguage('ko'));
-  btnEn.addEventListener('click', () => setLanguage('en'));
-
-  // 기본 언어 설정
-  setLanguage('ko');
-</script>
-
+    renderPortfolio();
+    setImageSources();
+    showPage(currentPageId());
+  </script>
 </body>
 </html>
-
-
 
