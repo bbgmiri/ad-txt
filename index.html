@@ -1,246 +1,844 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cozycat Games</title>
+  <meta name="description" content="COZYCAT official website" />
+  <title>COZYCAT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
   <style>
-.store-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 12px; /* 버튼 사이 여백 */
-  margin: 12px 0;
-}
-
-.store-button {
-  width: 230px;
-  height: auto;
-}
-
-.product-section {
-  text-align: center;
-  font-size: 25px;
-  margin-top: 60px;
-  margin-bottom: 40px;
-}
-
-.product-section a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.emoji {
-  text-decoration: none;
-  margin-right: 4px;
-  font-size: 1.2em;
-  vertical-align: middle;
-}
-
-.link-text {
-  font-size: 24px;
-  color: #e56b00;
-  text-decoration: underline;
-  transition: color 0.2s ease;
-}
-
-.product-section .link-text:hover {
-  color: #00AEEF; /* hover 시 파랑 */
-}
-
-.product-section .link-text:active {
-  color: #e56b00; /* 클릭 시 주황 */
-}
-
-  .language-toggle {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  gap: 20px;
-}
-
-.lang-btn {
-  position: relative;
-  background: none;
-  border: none;
-  font-size: 14px;
-  color: #888;
-  cursor: pointer;
-  padding-bottom: 10px;
-}
-
-.lang-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 2px;
-  border-radius: 999px;
-  background-color: #ccc;
-}
-
-.lang-btn.selected {
-  color: #00AEEF; /* 하늘색 */
-}
-
-.lang-btn.selected::after {
-  background-color: #00AEEF;
-}
-
-body {
-  font-family: 'Pretendard Variable', sans-serif;
-
-  margin: 0;
-  text-align: center;
-  padding: 20px;
-}
-
-    h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-      color: #FD9B2C;
+    :root {
+      --accent: #e97676;
+      --accent-dark: #d85e5e;
+      --text: #2a2a2a;
+      --muted: #777;
+      --line: #ececec;
+      --soft: #fff7f7;
+      --max: 1040px;
     }
 
-    .section {
-      margin-bottom: 50px;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #fff;
+      font-family: "Fredoka", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      line-height: 1.7;
     }
-
-    .section img {
+    body,
+    button,
+    input,
+    textarea,
+    select {
+      font-family: "Fredoka", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      font-weight: 400;
+    }
+    a { color: inherit; text-decoration: none; }
+    img {
+      display: block;
       max-width: 100%;
       height: auto;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+    .no-visual-search {
+      pointer-events: none !important;
     }
 
-.section h2 {
-  font-size: 24px;
-  margin: 20px;
-  color: #666;
-  font-weight: 600;
-}
-    .footer {
-      font-size: 14px;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+    }
+    .header-inner {
+      width: min(var(--max), calc(100% - 32px));
+      min-height: 78px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand img {
+      width: 132px;
+      max-height: 48px;
+      object-fit: contain;
+    }
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .primary-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .primary-nav > a {
+      min-height: 42px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: #333;
+      font: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .primary-nav > a:hover,
+    .primary-nav > a.active { color: var(--accent); }
+
+    main { min-height: calc(100vh - 180px); }
+    .page {
+      display: none;
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 54px 0 80px;
+    }
+    .page.active { display: block; }
+    .page-title {
+      margin: 0 0 26px;
+      color: var(--accent);
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .page-kicker {
+      margin: 0 0 42px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .home-lead {
+      max-width: none;
+      margin-bottom: 44px;
+      font-size: clamp(18px, 2.2vw, 23px);
       color: #555;
-      margin-top: 80px;
-      padding: 20px;
-      border-top: 1px solid #ccc;
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+    .home-hero {
+      width: 100vw;
+      margin: -54px calc(50% - 50vw) 32px;
+      overflow: hidden;
+      background: #f8efb8;
+    }
+    .home-hero img {
+      width: 100%;
+      max-width: none;
+      height: min(58vw, 560px);
+      object-fit: cover;
+      object-position: center;
+    }
+    .rule {
+      height: 1px;
+      margin: 42px 0;
+      background: var(--line);
+      border: 0;
+    }
+    .timeline {
+      margin: 0;
+      padding-left: 1.2em;
+      color: #4e4e4e;
+    }
+    .timeline li + li { margin-top: 7px; }
+    .quote-block {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 330px);
+      gap: 38px;
+      align-items: start;
+      margin-top: 16px;
+    }
+    .quote-block p {
+      margin-top: 0;
+      color: #555;
+      word-break: keep-all;
+    }
+    .portrait {
+      border-radius: 4px;
+      border: 1px solid var(--line);
     }
 
+    .game-list { display: grid; gap: 54px; }
+    .game-card {
+      display: grid;
+      gap: 20px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+    .game-card:last-child { border-bottom: 0; }
+    .game-card h2 {
+      margin: 0;
+      color: var(--accent);
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.35;
+      font-weight: 400;
+      letter-spacing: 0;
+      word-break: keep-all;
+    }
+    .game-banner {
+      width: auto;
+      max-width: 100%;
+      margin: 0 auto;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+    }
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .store-buttons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+    .store-buttons a:hover {
+      transform: translateY(-2px);
+      opacity: 0.88;
+    }
+    .store-buttons img { width: min(230px, 42vw); }
+    .section-heading {
+      margin: 0 0 18px;
+      color: var(--text);
+      font-size: clamp(20px, 2.4vw, 28px);
+      line-height: 1.35;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .portfolio-section + .portfolio-section { margin-top: 50px; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .gallery a {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #fafafa;
+      aspect-ratio: 4 / 3;
+    }
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.22s ease;
+    }
+    .gallery a:hover img { transform: scale(1.035); }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(20, 20, 20, 0.82);
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-panel {
+      position: relative;
+      width: min(100%, 1100px);
+      max-height: calc(100vh - 56px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox img {
+      width: auto;
+      max-width: 100%;
+      max-height: calc(100vh - 56px);
+      border-radius: 4px;
+      background: #fff;
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.35);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: #fff;
+      color: #111;
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 1;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+    }
+    .lightbox-close:hover { color: var(--accent); }
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .link-list a {
+      display: inline-flex;
+      width: fit-content;
+      color: var(--accent-dark);
+      font-weight: 400;
+      border-bottom: 1px solid currentColor;
+    }
+    .contact-box {
+      display: grid;
+      gap: 24px;
+      max-width: 720px;
+      color: #555;
+      font-size: 18px;
+    }
+    .contact-row strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 16px;
+    }
+    .contact-row a {
+      color: var(--accent-dark);
+      font-weight: 400;
+    }
+    strong {
+      font-weight: 400;
+    }
+    .legal {
+      max-width: 860px;
+      color: #3d3d3d;
+      font-size: 15px;
+    }
+    .legal h2 {
+      margin: 32px 0 10px;
+      color: var(--text);
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    .legal h3 {
+      margin: 22px 0 8px;
+      color: var(--text);
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    .legal p { margin: 0 0 12px; }
+    .legal ul {
+      margin: 0 0 16px;
+      padding-left: 1.25em;
+    }
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: #fafafa;
+      color: #666;
+      font-size: 14px;
+    }
+    .footer-inner {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 26px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-nav a:hover { color: var(--accent); }
+
+    @media (max-width: 780px) {
+      .header-inner { min-height: 68px; }
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .primary-nav {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 68px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+      .primary-nav.open { display: flex; }
+      .primary-nav > a {
+        justify-content: flex-start;
+        width: 100%;
+        padding: 14px 24px;
+        min-height: 48px;
+        border-top: 1px solid var(--line);
+      }
+      .quote-block { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 24px, var(--max));
+        padding-top: 38px;
+      }
+      .home-hero {
+        margin-top: -38px;
+      }
+      .home-hero img {
+        height: min(74vw, 430px);
+      }
+      .brand img { width: 116px; }
+      .gallery { grid-template-columns: 1fr; }
+      .lightbox {
+        padding: 16px;
+      }
+      .lightbox-panel,
+      .lightbox img {
+        max-height: calc(100vh - 32px);
+      }
+      .lightbox-close {
+        top: 8px;
+        right: 8px;
+      }
+      .store-buttons img { width: 210px; }
+    }
   </style>
 </head>
 <body>
-<div class="language-toggle">
-  <button id="btn-ko" class="lang-btn selected">한국어</button>
-  <button id="btn-en" class="lang-btn">English</button>
-</div>
-<h1 id="main-title" data-ko="Cozycat Studio" data-en="Cozycat Studio">
-</h1>
-
-  <div class="section">
-	    <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/1000x500.png?1770871744" alt="Merge Pocket Banner" />
-    <h2 data-ko="머지 포켓: 합치면서 만드는 주머니 속 작은 세상"
-        data-en="Merge Pocket: A tiny world inside your pocket">
-    </h2>
-
-    <div class="store-buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.mergepocket" target="_blank">
-        <img class="store-button"
-             src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png"
-             alt="Play Store Link" />
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home" data-nav="home" aria-label="COZYCAT Home">
+        <img class="no-visual-search" data-asset="published/group-4-assistor.png" alt="COZYCAT" />
       </a>
-<br /><br />
-      <a href="https://apps.apple.com/app/merge-pocket/id6757770385" target="_blank">
-        <img class="store-button"
-             src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997"
-             alt="App Store Link" />
-      </a>
-		</div>
-	  <br /><br /><br />
-    <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/group-198-1.png?1711089358" alt="Main Banner" />
-	<h2 data-ko="스티커타운: 스티커를 붙여서 그림을 완성해보세요!" data-en="Sticker Town: Complete the landscape by sticking stickers on it!">
-</h2>
-<div class="store-buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.Cozycatinc.StickerTown" target="_blank">
-     <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
-    </a>
-    <br /><br />
-    <a href="https://apps.apple.com/us/app/stickertown-puzzle-color-book/id6478581353" target="_blank">
-     <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997" alt="App Store Link" />
-    </a>
-</div>
-<br /><br /><br />
-    <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/hidden-1_orig.png" alt="Main Banner" />
-		<h2 data-ko="히든프렌즈: 숨은 친구들을 찾아봐요!" data-en="Hidden Friends: Find your adorable hidden friends!"></h2>
-<div class="store-buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.hiddenfriends" target="_blank">
-      <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
-    </a>
-    <br /><br />
-    <a href="https://apps.apple.com/us/app/hidden-friends/id6743651928" target="_blank">
-      <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997" alt="App Store Link" />
-    </a>
-</div>
-<br /><br /><br />
-    <img src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/group-189_1.png" alt="Color Town Banner" />
-    <h2 data-ko="컬러타운: 귀여운 캐릭터들과 컬러링하며 마을을 확장해요!" data-en="Color Town : Enjoy coloring, mini-games, and expanding your village with adorable characters!"></h2>
-    <div class="store-buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.cozycat.colortoc" target="_blank">
-        <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-375_2.png" alt="Play Store Link" />
-      </a>
-      <br /><br />
-      <a href="https://apps.apple.com/app/color-town-my-lovely-world/id1645751654" target="_blank">
-        <img class="store-button" src="https://cozycatgames.weebly.com/uploads/1/3/4/4/134425292/editor/image-376.png?1708506997" alt="App Store Link" />
-      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#games" data-nav="games">Games</a>
+        <a href="#works" data-nav="works">Works</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+      </nav>
     </div>
-<br /><br />
-<div class="product-section">
-<p>
-  <a href="https://www.coupang.com/vp/products/8508520617?itemId=24628034328&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91639093933&isAddedCart=" target="_blank">
-    <span class="emoji">😻</span>
-    <span class="link-text" data-ko="삼색고양이와 치즈 인형 구경가기→" data-en="Check out the plush doll: Samsaek Cat, Cheese">
-      삼색이 치즈 봉제 키링 인형 구경하러 가기
-    </span>
-  </a>
-</p>
-<p>
-  <a href="https://www.coupang.com/vp/products/8477139403?itemId=24530240614&searchId=3885704c727a4afc8173d24dae2f7a63&sourceType=brandstore_sdp_atf-all_products&storeId=197670&subSourceType=brandstore_sdp_atf-all_products&vendorId=A01297732&vendorItemId=91542848355&isAddedCart=" target="_blank">
-    <span class="emoji">🎨</span>
-    <span class="link-text" data-ko="캐릭터 컬러링북 구경가기→" data-en="Check out the character coloring book">
-      캐릭터 컬러링북 구경하러 가기
-    </span>
-  </a>
-</p>
+  </header>
 
-</div>
+  <main>
+    <section id="home" class="page active" aria-labelledby="home-title">
+      <div class="home-hero">
+        <img class="no-visual-search" data-asset="background-images/497186266.png" alt="COZYCAT game art world" />
+      </div>
+      <h1 id="home-title" class="page-title">Game Art Service</h1>
+      <div class="home-lead">
+        <p>주식회사 코지캣은 밝고 힐링되는 콘텐츠를 기획·개발·서비스하는 게임 스튜디오입니다. 즐겁고 유쾌하면서도 의미 있는 게임 경험을 통해 전 세계 유저들에게 긍정적인 에너지를 전하고, 나아가 세상을 더 밝고 따뜻한 곳으로 만드는 가치를 추구합니다.</p>
+      </div>
 
-  <div class="footer">
-    <p>✉️ info@cozycat.kr, support@cozycat.kr(Game)</p>
-    <p>📞 +82-010-2206-0768</p>
-<p data-ko="🏢 서울특별시 구로구 경인로20가길 5, 9층 901-456호" data-en="🏢 9F, Unit 901-456, 5 Gyeongin-ro 20ga-gil, Guro-gu, Seoul, South Korea"></p>
+      <hr class="rule" />
+
+      <h2 class="section-heading">Established in 2020</h2>
+      <ul class="timeline">
+        <li>2026년 6월 인디크래프트 국내/커뮤니티 부문 TOP 52 선정 '머지포켓'</li>
+        <li>2026년 5월 데브캠프 기획 선정 '타이니 서퍼'</li>
+        <li>2026년 2월 '머지포켓' 구글플레이, iOS 출시 예정</li>
+        <li>2025년 3월 '히든프렌즈' 숨은그림찾기게임 구글플레이, iOS 출시</li>
+        <li>2024년 3월 '스티커타운 퍼즐' 구글플레이, iOS 출시</li>
+        <li>2023년 12월 서울시여성가족재단 성교육 블록코딩 게임 2종 개발 납품</li>
+        <li>2023년 12월 '마구마구키우기' 구글플레이, iOS 출시</li>
+        <li>2023년 10월 2023 BIGS AWARD 모바일게임 '컬러타운' 유니티 그로우상 수상</li>
+        <li>2023년 5월 SBA 서울경제진흥원 게임마케팅지원 '컬러타운' 선정</li>
+        <li>2023년 5월 SBA 서울경제진흥원 게임콘텐츠 제작지원 '마구마구키우기' 선정</li>
+        <li>2023년 2월 Kinect 연동 보행 프로젝트(보행 증진 게임 2종과 데이터 분석 및 수집) 개발 납품</li>
+        <li>2022년 12월 메타버스 콘텐츠 '갤럭시시티(대전 엑스포 꿈돌이) 제페토월드' 개발 납품</li>
+        <li>2022년 11월 '컬러타운' 모바일게임 구글플레이, iOS 출시</li>
+        <li>2022년 10월~2023년 4월 LGU+ 아이들나라 웹게임 32종 개발 납품</li>
+        <li>2022년 7월 '청라국제도시 체험 게임' - 제페토월드 개발 및 납품</li>
+        <li>2022년 7월 '춘천태권도 체험 게임' - HTML5 게임 개발 및 납품</li>
+        <li>2022년 5월 브랜드 홍보 콘텐츠 게임 - '온그리디언츠 제페토월드' 제안, 기획, 개발, 디자인 및 출시</li>
+        <li>2022년 4월 중소벤처기업진흥공단 글로벌창업사관학교 3기 입교 (창업 사업화 지원)</li>
+        <li>2022년 3월 디즈니 IP 기반 어린이영어교육 모바일앱 프로토타입 제작 납품, 클라이언트사 LGU+ 사업 수주(아이들나라)</li>
+        <li>2022년 2월 '탈출! 온라인 그루밍' 웹게임 개발 납품, 양성평등진흥원 이러닝사이트 디클 출시</li>
+        <li>2022년 1월 어린이국립과학관 전시 프로그램 UI, 동물 애니메이션, 배경 디자인 제작 및 납품</li>
+        <li>2021년 9월 '교원 누리키즈' 어린이 문제활동 19종 개발 납품</li>
+        <li>2021년 6월 SBA 인디게임 패스트트랙 제작지원 선정 (모바일게임 컬러톡: 현 컬러타운)</li>
+        <li>2021년 3월 중소기업벤처부 청년창업사관학교 11기 입교 (창업 및 사업화 지원)</li>
+        <li>2020년 5월 창업진흥원 예비창업패키지 선정 (창업 사업화 지원)</li>
+      </ul>
+
+      <hr class="rule" />
+
+      <h2 class="section-heading">대표자 인삿말</h2>
+      <div class="quote-block">
+        <div>
+          <p>안녕하세요, 주식회사 코지캣 대표 안미리입니다.</p>
+          <p>주식회사 코지캣 설립은 더불어 사는 세상을 위한 좋은 가치 전달 목표에서 시작되었습니다. 인간성 회복, 다양성 존중과 이해와 배려로 사람과 사람이 하는 일을 통해 서로 도움이 되고 감동을 주고, 동시대를 함께 함에 감사하고 행복한 감정을 전파하고 싶습니다.</p>
+          <p>앞으로도 더 많은 가치 있는 콘텐츠를 발굴하여 좋은 시너지를 내겠습니다. 꾸준히 도전하고 있으며, 앞으로도 도전할 것입니다. 그 길에서 더 빠르고 크게 앞으로 전진할 수 있는 협업 기회를 찾고 싶습니다. 감사합니다.</p>
+        </div>
+        <img class="portrait no-visual-search" data-asset="a7a048712_orig.jpg" alt="COZYCAT representative" />
+      </div>
+    </section>
+
+    <section id="games" class="page" aria-labelledby="games-title">
+      <h1 id="games-title" class="page-title">Cozycat Games</h1>
+      <div class="game-list">
+        <article class="game-card">
+          <img class="game-banner no-visual-search" data-asset="editor/1000x500.png" alt="Merge Pocket Banner" />
+          <h2>머지 포켓: 합치면서 만드는 주머니 속 작은 세상</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.mergepocket" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-375_2.png" alt="Google Play" /></a>
+            <a href="https://apps.apple.com/app/merge-pocket/id6757770385" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-376.png" alt="App Store" /></a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <img class="game-banner no-visual-search" data-asset="editor/group-198-1.png" alt="Sticker Town Banner" />
+          <h2>스티커타운: 스티커를 붙여서 그림을 완성해보세요!</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.Cozycatinc.StickerTown" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="published/image-375_5.png" alt="Google Play" /></a>
+            <a href="https://apps.apple.com/app/sticker-town-puzzle/id6478581353" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-376_4.png" alt="App Store" /></a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <img class="game-banner no-visual-search" data-asset="hidden-1_orig.png" alt="Hidden Friends Banner" />
+          <h2>히든프렌즈: 숨은 친구들을 찾아봐요!</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.cozycatinc.hiddenfriends" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-375_4.png" alt="Google Play" /></a>
+            <a href="https://apps.apple.com/app/hidden-friends/id6743651928" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-376_3.png" alt="App Store" /></a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <img class="game-banner no-visual-search" data-asset="editor/group-189_1.png" alt="Color Town Banner" />
+          <h2>컬러타운: 귀여운 캐릭터들과 컬러링하며 마을을 확장해요!</h2>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.cozycat.colortoc" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-375_3.png" alt="Google Play" /></a>
+            <a href="https://apps.apple.com/us/app/color-town-my-lovely-world/id1645751654" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-376_2.png" alt="App Store" /></a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <img class="game-banner no-visual-search" data-asset="editor/group-188.png" alt="Amazing Grow Banner" />
+          <h2>마구마구 키우기: 펫을 키우고 예뻐해 주세요!</h2>
+          <div class="store-buttons">
+            <a href="https://apps.apple.com/us/app/amazing-grow/id6471392175" target="_blank" rel="noopener"><img class="no-visual-search" data-asset="editor/image-376_1.png" alt="App Store" /></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="works" class="page" aria-labelledby="works-title">
+      <h1 id="works-title" class="page-title">Cozycat Portfolio</h1>
+      <p class="page-kicker">Games / Contents / Graphic Design</p>
+      <div id="portfolio-root"></div>
+
+      <hr class="rule" />
+      <h2 class="section-heading">코지캣이 납품한 게임 플레이영상 보기</h2>
+      <ul class="link-list">
+        <li><a href="https://vimeo.com/661844630" target="_blank" rel="noopener">탈출!온라인그루밍 플레이영상</a></li>
+        <li><a href="https://www.youtube.com/watch?v=YBVmtBFVaVI" target="_blank" rel="noopener">디키즈! OX,사지선다 블록코딩 플레이영상</a></li>
+        <li><a href="https://vimeo.com/704043696" target="_blank" rel="noopener">온그리디언츠 제페토월드 플레이영상</a></li>
+        <li><a href="https://vimeo.com/818239185" target="_blank" rel="noopener">Kinect연동 두더지게임영상</a></li>
+        <li><a href="https://vimeo.com/818239185" target="_blank" rel="noopener">Kinect연동 양몰이게임영상</a></li>
+      </ul>
+
+      <hr class="rule" />
+      <h2 class="section-heading">코지캣이 납품한 게임 플레이링크</h2>
+      <ul class="link-list">
+        <li><a href="https://dicle.kigepe.or.kr/kigepe/user/curating/form.do?curatingMastrSn=42&curatingClCd=ELEMENTARY" target="_blank" rel="noopener">탈출! 온라인 그루밍 Play</a></li>
+        <li><a href="http://cozycat.synology.me:8002/coding_v1_4_cheat/" target="_blank" rel="noopener">디키즈! OX,사지선다 블록코딩 Play</a></li>
+        <li><a href="https://web.zepeto.me/ko/detail/SZArS3wK898tkcsTjYJ9D2u?referrer=copylink_share" target="_blank" rel="noopener">온그리디언츠 제페토월드 Play</a></li>
+        <li><a href="https://web.zepeto.me/ko/detail/ftMhu3wK87NtfpjxHMQhcqb?referrer=copylink_share" target="_blank" rel="noopener">청라국제도시 제페토월드 Play</a></li>
+      </ul>
+    </section>
+
+    <section id="contact" class="page" aria-labelledby="contact-title">
+      <h1 id="contact-title" class="page-title">Contact Us.</h1>
+      <div class="contact-box">
+        <div class="contact-row"><strong>사업, 제휴, 외주 문의</strong><a href="mailto:info@cozycat.kr">info@cozycat.kr</a></div>
+        <div class="contact-row"><strong>게임 관련 문의</strong><a href="mailto:support@cozycat.kr">support@cozycat.kr</a></div>
+        <div class="contact-row"><strong>연락처</strong>+82-010-2206-0768</div>
+        <div class="contact-row"><strong>주소</strong>서울특별시 구로구 경인로20가길 5, 9층<br />9F, 5 Gyeongin-ro 20ga-gil, Guro-gu, Seoul, South Korea</div>
+      </div>
+    </section>
+
+    <section id="terms" class="page legal" aria-labelledby="terms-title">
+      <h1 id="terms-title" class="page-title">Game Service Terms of Use</h1>
+      <p><strong>Updated On Jan. 2026</strong></p>
+      <p>These Terms govern access to and use of games and related services provided by Cozycat Inc. By downloading, accessing, or using the Services, you agree to these Terms and our Privacy Policy.</p>
+      <h2>Eligibility</h2>
+      <p>You must be at least 16 years old to use the Services. If you are under 18, you may only use the Services with consent from a parent or legal guardian.</p>
+      <h2>License and Restrictions</h2>
+      <p>Cozycat grants a limited, non-exclusive, non-transferable, revocable license to use the Services for personal entertainment purposes. You may not copy, modify, distribute, reverse engineer, exploit, or commercially use the Services except where permitted by law.</p>
+      <h2>Accounts, Data, and Deletion</h2>
+      <p>Some games may support guest accounts or third-party sign-in. Guest account data may be lost if the app is deleted, device data is reset, or the device changes. Account or data deletion requests can be sent to <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>.</p>
+      <h2>Ads and Purchases</h2>
+      <p>The Services may display advertisements and may include optional in-app purchases. Payments are processed by the applicable app store and are subject to that store's terms.</p>
+      <h2>Contact</h2>
+      <p><a href="mailto:support@cozycat.kr">support@cozycat.kr</a></p>
+
+      <hr class="rule" />
+      <h1 class="page-title">이용약관</h1>
+      <p><strong>최종 업데이트: 2026년 1월</strong></p>
+      <p>본 약관은 주식회사 코지캣이 제공하는 모바일 게임, 애플리케이션 및 관련 서비스 이용에 적용됩니다. 서비스를 이용함으로써 이용자는 본 약관 및 개인정보처리방침에 동의합니다.</p>
+      <h2>이용 자격</h2>
+      <p>서비스는 만 16세 이상 이용자를 대상으로 하며, 만 18세 미만 이용자는 부모 또는 법정대리인의 동의 하에 이용할 수 있습니다.</p>
+      <h2>라이선스 및 제한</h2>
+      <p>당사는 개인적 오락 목적의 제한적 이용권을 부여합니다. 무단 복제, 수정, 배포, 역공학, 치트 또는 자동화 도구 사용, 상업적 이용은 금지됩니다.</p>
+      <h2>계정 및 데이터</h2>
+      <p>일부 게임은 게스트 계정 또는 제3자 로그인을 지원할 수 있습니다. 게스트 데이터는 앱 삭제, 데이터 초기화, 기기 변경 시 손실될 수 있습니다. 삭제 문의는 <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>로 접수할 수 있습니다.</p>
+    </section>
+
+    <section id="privacy" class="page legal" aria-labelledby="privacy-title">
+      <h1 id="privacy-title" class="page-title">Game Service Privacy Policy</h1>
+      <p><strong>Updated On Jan. 2026</strong></p>
+      <p>Cozycat Inc. respects user privacy and processes personal information in accordance with applicable laws, including the Personal Information Protection Act of Korea.</p>
+      <h2>Information We Collect</h2>
+      <ul>
+        <li>Device information such as model, operating system, language, and time zone</li>
+        <li>Identifiers such as advertising identifiers or app identifiers</li>
+        <li>Usage data such as gameplay progress, events, sessions, and achievements</li>
+        <li>Technical data such as app version, crash logs, and performance information</li>
+      </ul>
+      <h2>How We Use Information</h2>
+      <p>We use information to operate and improve the Apps, analyze gameplay, fix bugs, provide support, display ads, prevent abuse, and comply with legal obligations.</p>
+      <h2>Advertising and Third-Party Services</h2>
+      <p>Our Apps may use third-party advertising or analytics services such as Firebase, AppLovin, Google AdMob, Unity Ads, or ironSource. These services process data under their own privacy policies.</p>
+      <h2>Data Deletion</h2>
+      <p>If no in-app deletion option is available, requests can be sent to <a href="mailto:support@cozycat.kr">support@cozycat.kr</a>.</p>
+
+      <hr class="rule" />
+      <h1 class="page-title">개인정보처리방침</h1>
+      <p><strong>최종 업데이트: 2026년 1월</strong></p>
+      <p>주식회사 코지캣은 이용자의 개인정보 보호를 중요하게 생각하며, 대한민국 개인정보 보호법 및 관련 법령을 준수합니다.</p>
+      <h2>수집하는 정보</h2>
+      <ul>
+        <li>기기 모델, 운영체제, 언어, 시간대 등 기기 정보</li>
+        <li>광고 식별자 및 앱 식별자</li>
+        <li>게임 진행도, 이벤트, 세션, 업적 등 이용 정보</li>
+        <li>앱 버전, 오류 로그, 성능 데이터 등 기술 정보</li>
+      </ul>
+      <h2>이용 목적</h2>
+      <p>앱 운영 및 개선, 게임 분석, 오류 수정, 고객 지원, 광고 표시, 부정 이용 방지, 법적 의무 이행을 위해 정보를 이용합니다.</p>
+      <h2>문의처</h2>
+      <p><a href="mailto:support@cozycat.kr">support@cozycat.kr</a></p>
+    </section>
+  </main>
+
+  <div class="lightbox" id="image-lightbox" aria-hidden="true">
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Portfolio image preview">
+      <button class="lightbox-close" type="button" aria-label="Close image preview">×</button>
+      <img class="no-visual-search" alt="" />
+    </div>
   </div>
-  <script>
-  const btnKo = document.getElementById('btn-ko');
-  const btnEn = document.getElementById('btn-en');
 
-  const setLanguage = (lang) => {
-    document.querySelectorAll('[data-ko]').forEach(el => {
-      el.innerText = el.dataset[lang];
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>copyright ⓒ 2026 COZYCAT</div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#terms">Terms of Service</a>
+        <a href="#privacy">Privacy Policy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const ASSET_BASE = "assets/";
+    const portfolioSections = [
+      {
+        title: "코지캣 서비스 게임",
+        images: [
+          "sticker-flowersday-port.png", "en.png", "1-ja.png",
+          "sticker-park-port.png", "1024x500.png", "1080x500.png",
+          "sticker-amusementpark-port.png", "port.png", "sticker-por5t.png",
+          "sticker-port.png", "kr.png", "123123.png",
+          "931982a6b0964106a0003b01a7550c19.png", "80786185.png", "group-188.png"
+        ]
+      },
+      {
+        title: "체험형 게임, 브랜드 홍보 게임, 솔루션 게임",
+        images: [
+          "1.png", "2.png", "3.png", "4.jpg", "3.jpg", "117245843.png",
+          "2-20221214.png", "5236654546463dfdfdgdfg.png", "3-ui.png",
+          "12341234.png", "234234234234.png", "6-20221216.png"
+        ]
+      },
+      {
+        title: "교육용 게임 콘텐츠",
+        images: [
+          "234234_1.png", "cozycat-61f4770f222873353b16.png", "20210819.png",
+          "sns-20210819.png", "20210819_1.png", "23424234_1.png",
+          "car-3_1.png", "car-result1_1.png", "1490814603_1.png",
+          "1861631965.png", "23423423423234234234.png", "234234234.png",
+          "32234234234.png", "23424234234234.png", "234234234234234.png"
+        ]
+      },
+      {
+        title: "전시 디자인",
+        images: [
+          "9_2.png", "8_2.png", "10_2.png", "ai-2-20211230.png",
+          "5.png", "2-20211219.png", "1046972179.png", "222-orig.png",
+          "331056647.png", "11.png", "1-orig.png"
+        ]
+      },
+      {
+        title: "웹플랫폼, 어플리케이션 UI, 리플렛 디자인",
+        images: [
+          "cozycat-d593f369a31b94aa16d9.jpg", "1534828078642110-1-orig.png",
+          "ui-1.png", "ui-3.png", "ui-4.jpg", "222-1-orig.png",
+          "ui-1-orig.png", "ui-2-orig.png", "ui-3-orig.png", "ui-4-orig.png",
+          "202892509.png", "1234124124124.png", "mask-group.png", "1.jpg", "218276983.png"
+        ]
+      },
+      {
+        title: "캐릭터 디자인, 만화 콘텐츠",
+        images: [
+          "308929677.png", "1867152852.png", "3d-20230222.png",
+          "1731481893.gif", "2.gif", "2127796639.gif", "4.png",
+          "123424123123.png", "8.png", "2024.png", "9.png",
+          "10.png", "7.png", "3.png", "12.png", "14.png"
+        ]
+      }
+    ];
+
+    const pages = [...document.querySelectorAll(".page")];
+    const navItems = [...document.querySelectorAll("[data-nav]")];
+    const menuToggle = document.querySelector(".menu-toggle");
+    const primaryNav = document.querySelector(".primary-nav");
+
+    function encodeAssetPath(path) {
+      return path.split("/").map(encodeURIComponent).join("/");
+    }
+
+    function assetUrl(path) {
+      return ASSET_BASE + encodeAssetPath(path);
+    }
+
+    function setImageSources() {
+      document.querySelectorAll("img[data-asset]").forEach((img) => {
+        img.src = assetUrl(img.dataset.asset);
+      });
+    }
+
+    function renderPortfolio() {
+      const root = document.getElementById("portfolio-root");
+      root.innerHTML = portfolioSections.map((section) => {
+        const images = section.images.map((path) => `
+          <a href="${assetUrl(path)}" data-lightbox-image aria-label="${section.title} 이미지 크게 보기">
+            <img class="no-visual-search" data-asset="${path}" alt="${section.title}" loading="lazy" />
+          </a>
+        `).join("");
+        return `
+          <section class="portfolio-section">
+            <h2 class="section-heading">${section.title}</h2>
+            <div class="gallery">${images}</div>
+          </section>
+        `;
+      }).join("");
+    }
+
+    function initLightbox() {
+      const lightbox = document.getElementById("image-lightbox");
+      const lightboxImage = lightbox.querySelector("img");
+      const closeButton = lightbox.querySelector(".lightbox-close");
+
+      function openLightbox(src, alt) {
+        lightboxImage.src = src;
+        lightboxImage.alt = alt || "Portfolio image preview";
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        closeButton.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.removeAttribute("src");
+        document.body.style.overflow = "";
+      }
+
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest("[data-lightbox-image]");
+        if (!link) return;
+        event.preventDefault();
+        const image = link.querySelector("img");
+        openLightbox(link.href, image?.alt);
+      });
+
+      closeButton.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
+    }
+
+    function currentPageId() {
+      const id = location.hash.replace("#", "") || "home";
+      return pages.some((page) => page.id === id) ? id : "home";
+    }
+
+    function showPage(id) {
+      pages.forEach((page) => page.classList.toggle("active", page.id === id));
+      navItems.forEach((item) => item.classList.toggle("active", item.dataset.nav === id));
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      primaryNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    window.addEventListener("hashchange", () => showPage(currentPageId()));
+    menuToggle.addEventListener("click", () => {
+      const isOpen = primaryNav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".site-header")) {
+        primaryNav.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }
     });
 
-    btnKo.classList.toggle('selected', lang === 'ko');
-    btnEn.classList.toggle('selected', lang === 'en');
-  };
-
-  btnKo.addEventListener('click', () => setLanguage('ko'));
-  btnEn.addEventListener('click', () => setLanguage('en'));
-
-  // 기본 언어 설정
-  setLanguage('ko');
-</script>
-
+    renderPortfolio();
+    setImageSources();
+    initLightbox();
+    showPage(currentPageId());
+  </script>
 </body>
 </html>
-
-
-
